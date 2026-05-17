@@ -55,6 +55,12 @@ https://docs.google.com/forms/d/e/1FAIpQLSdW1EdcmtjSPPq68Hx-bdth5hO2KNyjhAwEV9Ld
 
 The form is intentionally short and respectful. It collects only what is needed to decide whether hosted access is the right path.
 
+After someone submits the form, access is not provisioned automatically yet. The current process is:
+
+1. Review the request.
+2. If hosted access is appropriate, send the requester a token or connector details by email.
+3. Include short setup instructions for their client, including whether they need to reconnect, disable/re-enable a connector, or paste a token into an auth screen.
+
 Recommended fields:
 
 ### Required
@@ -71,8 +77,6 @@ Recommended fields:
 2. Organisation or role.
 3. GitHub username.
 4. Whether you are happy to be contacted about your use case.
-5. Whether you might contribute to hosting costs if hosted access becomes paid or supporter-funded.
-6. Anything else you want me to know.
 
 ### Do not ask
 
@@ -94,6 +98,8 @@ Description:
 > The Education Agent Skills Library remains free and open source. For most people, the best free route is to install the skills locally from GitHub or use them manually from the `SKILL.md` files.
 >
 > This form is only for people who specifically need the hosted MCP endpoint. Hosted MCP creates infrastructure costs, so I’m using this form to understand who depends on it and how to keep access sustainable.
+>
+> After you submit, I’ll review the request and email the next step. This form does not automatically issue a token yet. If hosted access is enabled for you, the email will include the token or connector details and short setup instructions for your client.
 >
 > Please do not include student data or confidential school information.
 
@@ -137,11 +143,6 @@ Optional questions:
 7. **Organisation or role**
 8. **GitHub username**
 9. **Are you happy for me to contact you about your use case?**
-10. **If hosted MCP becomes supporter-funded or low-cost paid access, would you want to hear about it?**
-    - Yes
-    - No
-    - Maybe later
-11. **Anything else?**
 
 ## Tone note
 
