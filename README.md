@@ -7,6 +7,13 @@
 
 An open-source library of 131 evidence-based pedagogical skills for curriculum design, lesson planning, and assessment — works in Claude Code, Claude.ai (via MCP), and OpenAI Codex, and engineered for AI agent orchestration.
 
+> [!IMPORTANT]
+> **Hosted MCP access now requires an auth token.**
+>
+> The library is still free and open source, and local/plugin/manual use remains the recommended free path. The hosted MCP server is still available for people who specifically need a remote MCP endpoint, but anonymous access is now blocked so the service stays sustainable.
+>
+> **Need hosted MCP?** [Request an access token](https://docs.google.com/forms/d/e/1FAIpQLSdW1EdcmtjSPPq68Hx-bdth5hO2KNyjhAwEV9Ld0EwWL1Gr8Q/viewform) or [jump to hosted MCP setup](#mcp-server).
+
 ---
 
 ## Get Started
@@ -29,13 +36,13 @@ https://github.com/GarethManning/education-agent-skills
 claude plugin install https://github.com/GarethManning/education-agent-skills
 ```
 
-**Claude.ai / Claude Desktop (hosted MCP)** — use only if your workflow specifically needs a remote MCP connector:
+**Claude.ai / Claude Desktop (hosted MCP)** — use only if your workflow specifically needs a remote MCP connector. Hosted access requires a token:
 
 ```text
 https://mcp-server-sigma-sooty.vercel.app/mcp
 ```
 
-Hosted MCP access may move behind lightweight access controls to keep infrastructure costs sustainable. Free local and manual options remain available. See [Hosted MCP access](docs/HOSTED_MCP_ACCESS.md).
+Request a token here: [Hosted MCP access signup](https://docs.google.com/forms/d/e/1FAIpQLSdW1EdcmtjSPPq68Hx-bdth5hO2KNyjhAwEV9Ld0EwWL1Gr8Q/viewform). Free local and manual options remain available. See [Hosted MCP access](docs/HOSTED_MCP_ACCESS.md).
 
 ### OpenAI Codex
 
@@ -213,7 +220,9 @@ The skill library is available as a live MCP server for clients that specificall
 
 **Production URL:** `https://mcp-server-sigma-sooty.vercel.app/mcp`
 
-Important: the hosted MCP server is a convenience endpoint, not the only way to use the library. If you can install the skills locally, prefer the free local options in [Get Started](#get-started). Hosted MCP access may move behind lightweight access controls to keep infrastructure costs sustainable. See [Hosted MCP access](docs/HOSTED_MCP_ACCESS.md).
+Important: the hosted MCP server is a convenience endpoint, not the only way to use the library. If you can install the skills locally, prefer the free local options in [Get Started](#get-started).
+
+Hosted MCP access now requires a unique auth token. Request one here: [Hosted MCP access signup](https://docs.google.com/forms/d/e/1FAIpQLSdW1EdcmtjSPPq68Hx-bdth5hO2KNyjhAwEV9Ld0EwWL1Gr8Q/viewform). Gareth's Agent normally emails the MCP URL, token, and short setup instructions within a few minutes. See [Hosted MCP access](docs/HOSTED_MCP_ACCESS.md) for details.
 
 Connect from Claude.ai by adding the URL under **Integrations > MCP Servers**. Connect from Claude Desktop:
 
@@ -222,7 +231,10 @@ Connect from Claude.ai by adding the URL under **Integrations > MCP Servers**. C
   "mcpServers": {
     "education-skills": {
       "type": "streamable-http",
-      "url": "https://mcp-server-sigma-sooty.vercel.app/mcp"
+      "url": "https://mcp-server-sigma-sooty.vercel.app/mcp",
+      "headers": {
+        "Authorization": "Bearer <paste access token here>"
+      }
     }
   }
 }
