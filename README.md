@@ -13,6 +13,8 @@ An open-source library of 131 evidence-based pedagogical skills for curriculum d
 
 Works with Claude, Codex, and any tool that supports the Agent Skills standard.
 
+For sustainable free use, install or copy the skills locally from GitHub where possible. The hosted MCP server is a convenience endpoint for remote clients, not a requirement for using the library.
+
 ### Claude
 
 **CoWork (easiest)** — go to **Customize → (+) Add Plugin** and paste:
@@ -23,25 +25,44 @@ https://github.com/GarethManning/education-agent-skills
 
 **Claude Code CLI** — install from the repo URL:
 
-```
+```bash
 claude plugin install https://github.com/GarethManning/education-agent-skills
 ```
 
-**Claude.ai / Claude Desktop (MCP server)** — add under **Settings → Connectors**:
+**Claude.ai / Claude Desktop (hosted MCP)** — use only if your workflow specifically needs a remote MCP connector:
 
-```
+```text
 https://mcp-server-sigma-sooty.vercel.app/mcp
 ```
 
+Hosted MCP access may move behind lightweight access controls to keep infrastructure costs sustainable. Free local and manual options remain available. See [Hosted MCP access](docs/HOSTED_MCP_ACCESS.md).
+
 ### OpenAI Codex
 
-Clone the repo and install as a plugin, or copy individual skill folders to `~/.codex/skills/`:
+Codex does **not** need the hosted MCP server. Recommended local setup:
 
 ```bash
 git clone https://github.com/GarethManning/education-agent-skills.git
-# Global access to a single skill:
+cd education-agent-skills
+codex plugin marketplace add "$PWD"
+```
+
+The repository includes a Codex plugin manifest at `.codex-plugin/plugin.json` pointing to `./skills/`, plus a local marketplace helper at `.agents/plugins/marketplace.json`. After installing/enabling the local plugin, restart Codex.
+
+For one or two individual skills, copy them into your global Codex skills directory:
+
+```bash
+mkdir -p ~/.codex/skills
 cp -r skills/<domain>/<skill-name> ~/.codex/skills/
 ```
+
+Example:
+
+```bash
+cp -r skills/memory-learning-science/spaced-practice-scheduler ~/.codex/skills/
+```
+
+Full Codex guide: [docs/CODEX.md](docs/CODEX.md).
 
 ### Any Agent Skills-compatible tool
 
@@ -188,9 +209,11 @@ Every skill opens with a machine-readable YAML header including skill ID, domain
 
 ### MCP Server
 
-The skill library is available as a live MCP server. Any MCP-compatible client can discover, search, and invoke all 131 skills programmatically.
+The skill library is available as a live MCP server for clients that specifically need remote discovery or programmatic access.
 
 **Production URL:** `https://mcp-server-sigma-sooty.vercel.app/mcp`
+
+Important: the hosted MCP server is a convenience endpoint, not the only way to use the library. If you can install the skills locally, prefer the free local options in [Get Started](#get-started). Hosted MCP access may move behind lightweight access controls to keep infrastructure costs sustainable. See [Hosted MCP access](docs/HOSTED_MCP_ACCESS.md).
 
 Connect from Claude.ai by adding the URL under **Integrations > MCP Servers**. Connect from Claude Desktop:
 

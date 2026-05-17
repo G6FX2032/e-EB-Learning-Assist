@@ -4,6 +4,8 @@ MCP server exposing the [Education Agent Skills](https://github.com/GarethMannin
 
 **Production URL:** `https://mcp-server-sigma-sooty.vercel.app/mcp`
 
+This hosted endpoint is a convenience for clients that specifically need remote MCP discovery. It is not required for local Claude Code, Codex, or manual use. For sustainable free use, prefer installing the skills locally from GitHub where possible. See [Hosted MCP access](../docs/HOSTED_MCP_ACCESS.md) and [Codex setup](../docs/CODEX.md).
+
 ## Architecture
 
 Skills are registered **twice** — as both MCP tools and MCP prompts:
@@ -22,7 +24,7 @@ Skills are registered **twice** — as both MCP tools and MCP prompts:
 
 ## Connect to Claude.ai
 
-Add this MCP server in your Claude.ai settings under **Integrations > MCP Servers**:
+Add this MCP server in your Claude.ai settings under **Integrations > MCP Servers** if you specifically need hosted MCP access:
 
 ```
 https://mcp-server-sigma-sooty.vercel.app/mcp
