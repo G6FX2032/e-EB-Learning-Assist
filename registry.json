@@ -1,8 +1,8 @@
 {
   "version": "2.0",
-  "generated": "2026-05-18T14:55:34.587795+00:00",
+  "generated": "2026-05-18T15:07:22.914411+00:00",
   "standard": "agent-skills-1.0",
-  "total_skills": 142,
+  "total_skills": 145,
   "domains": [
     {
       "id": "ai-learning-science",
@@ -82,7 +82,7 @@
     {
       "id": "questioning-discussion",
       "label": "Questioning & Discussion",
-      "skill_count": 4
+      "skill_count": 5
     },
     {
       "id": "self-regulated-learning",
@@ -92,7 +92,7 @@
     {
       "id": "systems-thinking",
       "label": "Systems Thinking",
-      "skill_count": 5
+      "skill_count": 7
     },
     {
       "id": "wellbeing-motivation-agency",
@@ -4023,6 +4023,39 @@
       "path": "skills/questioning-discussion/hinge-question-designer/SKILL.md"
     },
     {
+      "id": "questioning-discussion/perspective-taking-designer",
+      "name": "perspective-taking-designer",
+      "display_name": "Perspective-Taking Designer",
+      "domain": "questioning-discussion",
+      "description": "Design structured perspective-taking activities with anti-projection guardrails. Develops genuine understanding of complexity across history, social sciences, and literature \u2014 not performed empathy.",
+      "disable_model_invocation": false,
+      "evidence_strength": "moderate",
+      "tags": [
+        "perspective-taking",
+        "empathy",
+        "historical-thinking",
+        "social-perspective",
+        "anti-projection",
+        "discussion",
+        "inquiry"
+      ],
+      "teacher_time": "5-10 minutes",
+      "chains_with": [
+        "dialogic-teaching-move-generator",
+        "discussion-protocol-selector",
+        "ladder-of-inference-reflection",
+        "mental-model-mapper",
+        "socratic-questioning-sequence-generator"
+      ],
+      "chain_edges": {
+        "receives_from": [],
+        "feeds_into": [],
+        "output_field": null,
+        "input_field": null
+      },
+      "path": "skills/questioning-discussion/perspective-taking-designer/SKILL.md"
+    },
+    {
       "id": "questioning-discussion/socratic-questioning-sequence-generator",
       "name": "socratic-questioning-sequence-generator",
       "display_name": "Socratic Questioning Sequence Generator",
@@ -4305,6 +4338,38 @@
       "path": "skills/systems-thinking/ladder-of-inference-reflection/SKILL.md"
     },
     {
+      "id": "systems-thinking/leverage-and-response-design",
+      "name": "leverage-and-response-design",
+      "display_name": "Leverage and Response Design",
+      "domain": "systems-thinking",
+      "description": "Design a wise systems intervention from an existing analysis. Maps proposed actions against Meadows' leverage points, checks for unintended consequences, and generates alternatives.",
+      "disable_model_invocation": false,
+      "evidence_strength": "moderate",
+      "tags": [
+        "systems-thinking",
+        "leverage-points",
+        "intervention-design",
+        "unintended-consequences",
+        "meadows",
+        "feedback-loops",
+        "action-design"
+      ],
+      "teacher_time": "10-15 minutes",
+      "chains_with": [
+        "systems-awareness-iceberg",
+        "agency-circles-for-systems-action",
+        "mental-model-mapper",
+        "compassionate-systems-awareness-orchestrator"
+      ],
+      "chain_edges": {
+        "receives_from": [],
+        "feeds_into": [],
+        "output_field": null,
+        "input_field": null
+      },
+      "path": "skills/systems-thinking/leverage-and-response-design/SKILL.md"
+    },
+    {
       "id": "systems-thinking/mental-model-mapper",
       "name": "mental-model-mapper",
       "display_name": "Mental Model Mapper",
@@ -4326,6 +4391,7 @@
         "systems-awareness-iceberg",
         "aspirational-systems-iceberg",
         "ladder-of-inference-reflection",
+        "systems-wellbeing-impact-mapper",
         "culturally-responsive-teaching-designer",
         "place-based-inquiry-anchor"
       ],
@@ -4370,6 +4436,38 @@
         "input_field": null
       },
       "path": "skills/systems-thinking/systems-awareness-iceberg/SKILL.md"
+    },
+    {
+      "id": "systems-thinking/systems-wellbeing-impact-mapper",
+      "name": "systems-wellbeing-impact-mapper",
+      "display_name": "Systems Wellbeing Impact Mapper",
+      "domain": "systems-thinking",
+      "description": "Map systemic forces shaping a wellbeing concern without individualising the problem. Uses Bronfenbrenner's ecological model and social determinants to generate structural interventions.",
+      "disable_model_invocation": false,
+      "evidence_strength": "emerging",
+      "tags": [
+        "wellbeing",
+        "systems-thinking",
+        "bronfenbrenner",
+        "social-determinants",
+        "school-culture",
+        "structural-intervention",
+        "ecological-model"
+      ],
+      "teacher_time": "10-15 minutes",
+      "chains_with": [
+        "systems-awareness-iceberg",
+        "agency-circles-for-systems-action",
+        "leverage-and-response-design",
+        "wellbeing-learning-connection-mapper"
+      ],
+      "chain_edges": {
+        "receives_from": [],
+        "feeds_into": [],
+        "output_field": null,
+        "input_field": null
+      },
+      "path": "skills/systems-thinking/systems-wellbeing-impact-mapper/SKILL.md"
     },
     {
       "id": "wellbeing-motivation-agency/agency-scaffold-generator",

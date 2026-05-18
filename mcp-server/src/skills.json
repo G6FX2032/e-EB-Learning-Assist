@@ -13026,6 +13026,109 @@
   },
   {
     "metadata": {
+      "name": "perspective-taking-designer",
+      "description": "Design structured perspective-taking activities with anti-projection guardrails. Develops genuine understanding of complexity across history, social sciences, and literature — not performed empathy.",
+      "disable-model-invocation": false,
+      "user-invocable": true,
+      "effort": "medium",
+      "skill_id": "questioning-discussion/perspective-taking-designer",
+      "skill_name": "Perspective-Taking Designer",
+      "domain": "questioning-discussion",
+      "version": "1.0",
+      "evidence_strength": "moderate",
+      "evidence_sources": [
+        "Gehlbach (2004, 2012) — Social perspective-taking in educational settings",
+        "Gehlbach & Brinkworth (2012) — The social perspective taking process",
+        "Batson (2009) — These things called empathy: eight related but distinct phenomena",
+        "Galinsky, Ku & Wang (2005) — Perspective-taking and self-other merging",
+        "Selman (1980) — The growth of interpersonal understanding (developmental stages of perspective-taking)",
+        "Endacott & Brooks (2013) — Historical empathy in the social studies classroom"
+      ],
+      "input_schema": {
+        "required": [
+          {
+            "field": "subject_context",
+            "type": "string",
+            "description": "The subject area and topic. Example: Year 9 History — the partition of India; or Grade 6 Science — a community debate about building a wind farm"
+          },
+          {
+            "field": "learning_goal",
+            "type": "string",
+            "description": "What perspective-taking should accomplish here. Example: students understand why different groups experienced partition differently"
+          }
+        ],
+        "optional": [
+          {
+            "field": "age_range",
+            "type": "string",
+            "description": "Student age range"
+          },
+          {
+            "field": "sensitivity_notes",
+            "type": "string",
+            "description": "Cultural, political, or personal sensitivities. Example: students from families with partition history in the class"
+          },
+          {
+            "field": "prior_knowledge",
+            "type": "string",
+            "description": "What students already know about the topic"
+          }
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "fields": [
+          {
+            "field": "activity_sequence",
+            "type": "object",
+            "description": "Four-phase sequence: context-building, perspective identification, perspective exploration, synthesis"
+          },
+          {
+            "field": "anti_projection_guardrails",
+            "type": "array",
+            "description": "Topic-specific safeguards against projecting current values or personal experience onto historical or cultural perspectives"
+          },
+          {
+            "field": "assessment_criteria",
+            "type": "array",
+            "description": "Criteria focused on quality of reasoning — evidence used, complexity acknowledged, uncertainty expressed — not emotional performance"
+          },
+          {
+            "field": "safety_check",
+            "type": "object",
+            "description": "Whether the activity asks students to empathise with perpetrators, and how to reframe if so"
+          },
+          {
+            "field": "developmental_calibration",
+            "type": "string",
+            "description": "How to adjust complexity and abstraction for the specified age range"
+          }
+        ]
+      },
+      "chains_well_with": [
+        "dialogic-teaching-move-generator",
+        "discussion-protocol-selector",
+        "ladder-of-inference-reflection",
+        "mental-model-mapper",
+        "socratic-questioning-sequence-generator"
+      ],
+      "teacher_time": "5-10 minutes",
+      "tags": [
+        "perspective-taking",
+        "empathy",
+        "historical-thinking",
+        "social-perspective",
+        "anti-projection",
+        "discussion",
+        "inquiry"
+      ]
+    },
+    "prompt": "You are an expert in social perspective-taking research, drawing specifically on Gehlbach's work on social perspective-taking processes, Batson's taxonomy of empathy phenomena, and Selman's developmental stages. Your task is to design a structured perspective-taking activity that develops genuine understanding of complexity — not performed empathy.\n\nInputs:\nSubject context: {{subject_context}}\nLearning goal: {{learning_goal}}\nAge range: {{age_range}}\nSensitivity notes: {{sensitivity_notes}}\nPrior knowledge: {{prior_knowledge}}\n\nUse these rules:\n\n1. DESIGN A FOUR-PHASE ACTIVITY SEQUENCE:\n   - Phase 1 — Context-building: What do students need to know before attempting perspective-taking? What is the historical, cultural, or situational context that shaped the perspectives you are examining? Students cannot take a genuine perspective without understanding the world that perspective was formed within.\n   - Phase 2 — Perspective identification: Whose perspectives are relevant and available? Name them specifically. Flag when a perspective is underdocumented — we may know about a group without knowing how they experienced the specific moment.\n   - Phase 3 — Perspective exploration: Structured inquiry into each perspective. Students investigate, using evidence, how each person or group understood their situation. Specify the sources or evidence types students should use.\n   - Phase 4 — Synthesis: What did students learn about complexity? What aspects of the situation look different when seen from multiple perspectives? What remains genuinely uncertain?\n\n2. ANTI-PROJECTION GUARDRAILS — these are critical and must be topic-specific:\n   - Distinguish clearly between:\n     a. Imagining what someone thinks/feels from within their own context (contextual perspective-taking) — epistemically sound\n     b. Imagining what we would think/feel in their situation (projection) — epistemically problematic\n   - Where historical or cultural perspectives are involved: require students to use primary sources, documented accounts, or contextualised secondary sources, not imagination.\n   - Include explicit instructions: \"If students cannot find evidence for how a person or group experienced this, they should say 'we do not know' rather than inventing a perspective.\"\n   - Flag when perspectives risk being flattened into single viewpoints. Example: \"the Indian perspective on partition\" does not exist — name the specific communities, groups, and positions within them.\n   - Include at least two guardrail prompts specific to this topic.\n\n3. DEVELOPMENTAL CALIBRATION based on Selman's stages:\n   - Ages 6-8 (Stage 1): Can recognise that others have different perspectives. Limit to: whose view is this? What does this person know or not know?\n   - Ages 8-10 (Stage 2): Can take one perspective at a time. Sequence activities so students hold one perspective fully before shifting to another.\n   - Ages 10-12 (Stage 3): Can coordinate two perspectives simultaneously. Introduce comparison.\n   - Ages 12+ (Stage 4): Can hold multiple perspectives and reflect on how they are shaped by social position, power, and experience. Introduce structural analysis of why perspectives differ.\n   Calibrate language, activity complexity, and synthesis expectations accordingly.\n\n4. SAFETY CHECK for sensitive topics:\n   - Is this perspective-taking activity asking students to empathise with perpetrators of harm? If yes, reframe: understanding why someone acted is not the same as empathising with their actions. Students can analyse motivations, contextual pressures, and available choices without being asked to feel what an oppressor felt.\n   - Does the topic involve lived experiences that some students in the class may personally hold? If sensitivity notes indicate this, design the activity so that students are never required to speak for their own group or correct others' perspective-taking.\n   - Are there perspectives that should NOT be included in the activity because including them would require treating harmful worldviews as epistemically equivalent? Name these where relevant.\n\n5. ASSESSMENT CRITERIA:\n   Focus on quality of reasoning, not emotional performance:\n   - Evidence quality: Did students use appropriate sources? Did they cite context, not just imagination?\n   - Complexity acknowledgement: Did students recognise that the perspective is not monolithic?\n   - Uncertainty expression: Did students say \"we do not know\" where evidence is absent, rather than inventing a position?\n   - Contextualisation: Did students situate the perspective within its historical/cultural conditions, rather than applying contemporary values?\n   Do NOT assess: how much empathy students expressed, how emotionally engaged they seemed, or whether they felt sad, troubled, or moved.\n\nSelf-check: Am I designing an activity that develops genuine understanding of complexity, or one that asks students to perform empathy? Are the anti-projection guardrails specific to this topic, not generic? Is the activity developmentally appropriate? Have I checked whether any perspectives in this activity risk asking students to empathise with perpetrators rather than understand them?\n\nReturn exactly:\n\n## Perspective-Taking Designer: [Topic Label]\n\n**Subject and learning goal:** [Brief restatement]\n**Epistemic stance:** The goal is contextual understanding, not emotional identification. Evidence replaces imagination where it exists; uncertainty is named where it does not.\n\n### Safety Check\n- **Perpetrator empathy risk:** [Yes/No — and how it is addressed if yes]\n- **Lived experience in class:** [How to handle if yes]\n- **Perspectives to exclude or handle carefully:** [If any]\n\n### Developmental Calibration\n- **Age range:** [Student age range]\n- **Selman stage:** [Stage and implications]\n- **Adjustments made:** [How complexity, language, and synthesis expectations are calibrated]\n\n### Activity Sequence\n\n**Phase 1: Context-Building (before perspective-taking begins)**\n- What students need to know: [specific content]\n- Recommended sources or materials: [types]\n- Time estimate: [brief]\n- Key question to anchor the phase: [question]\n\n**Phase 2: Perspective Identification**\n- Perspectives available and evidenced: [list with brief description of evidence base for each]\n- Perspectives that are underdocumented: [and what to say to students about this]\n- What to avoid: [common flattening — e.g. treating a diverse group as a single perspective]\n\n**Phase 3: Perspective Exploration**\n- Student task: [specific activity — e.g. read primary source, annotate, respond to guiding questions]\n- Guiding questions (for each perspective):\n  - What did [person/group] know or not know at this moment?\n  - What pressures, loyalties, or constraints shaped their choices?\n  - What evidence do we have for how they understood this situation?\n  - What do we not know, and why might that knowledge be absent?\n- Evidence requirement: [What sources students must use; what substitutes are not acceptable]\n\n**Phase 4: Synthesis**\n- Discussion prompt: [How does this situation look different from each perspective? What aspects remain uncertain?]\n- Synthesis task: [Brief — written, visual, or verbal — that requires students to hold multiple perspectives simultaneously and name what they do not know]\n\n### Anti-Projection Guardrails (topic-specific)\n1. [Guardrail specific to this topic]\n2. [Guardrail specific to this topic]\n3. [General instruction: \"If students cannot find evidence for how a person or group experienced this, they should say 'we do not know' rather than inventing a perspective.\"]\n\n### Assessment Criteria\n| Criterion | Strong evidence of understanding | Needs development |\n|---|---|---|\n| Evidence use | Uses specific sources; cites context | Relies on imagination or presentism |\n| Complexity | Names diversity within the perspective | Treats group as single voice |\n| Uncertainty | Names what is unknown with reasons | Invents positions where evidence is absent |\n| Contextualisation | Situates perspective in its historical/cultural conditions | Applies contemporary values to past/other context |\n\nNote: Emotional engagement is not an assessment criterion. Students who engage with careful reasoning and intellectual humility have succeeded, regardless of affective response.",
+    "description": "Design structured perspective-taking activities with anti-projection guardrails. Develops genuine understanding of complexity across history, social sciences, and literature — not performed empathy.",
+    "toolName": "perspective-taking-designer"
+  },
+  {
+    "metadata": {
       "name": "socratic-questioning-sequence-generator",
       "description": "Generate a Socratic questioning sequence that develops conceptual understanding through guided inquiry. Use when facilitating philosophical discussions, concept exploration, or critical examination.",
       "disable-model-invocation": false,
@@ -13941,6 +14044,107 @@
   },
   {
     "metadata": {
+      "name": "leverage-and-response-design",
+      "description": "Design a wise systems intervention from an existing analysis. Maps proposed actions against Meadows' leverage points, checks for unintended consequences, and generates alternatives.",
+      "disable-model-invocation": false,
+      "user-invocable": true,
+      "effort": "medium",
+      "skill_id": "systems-thinking/leverage-and-response-design",
+      "skill_name": "Leverage and Response Design",
+      "domain": "systems-thinking",
+      "version": "1.0",
+      "evidence_strength": "moderate",
+      "evidence_sources": [
+        "Meadows (2008) — Thinking in Systems (leverage points hierarchy, 12 places to intervene)",
+        "Meadows (1999) — Leverage Points: Places to Intervene in a System",
+        "Senge (1990) — The Fifth Discipline (unintended consequences, systems archetypes)",
+        "Sterman (2000) — Business Dynamics (policy resistance, feedback loops)",
+        "Kim (1999) — Systems Archetypes (shifting the burden, fixes that fail, limits to growth)"
+      ],
+      "input_schema": {
+        "required": [
+          {
+            "field": "systems_analysis",
+            "type": "string",
+            "description": "The systems analysis already done — iceberg, mental model map, agency circles output, or description of the system and its patterns"
+          },
+          {
+            "field": "proposed_action",
+            "type": "string",
+            "description": "What students or educators are currently thinking of doing about the problem"
+          }
+        ],
+        "optional": [
+          {
+            "field": "age_range",
+            "type": "string",
+            "description": "Student age range"
+          },
+          {
+            "field": "scope_constraints",
+            "type": "string",
+            "description": "What students can realistically do (time, budget, authority, reach)"
+          },
+          {
+            "field": "context",
+            "type": "string",
+            "description": "Community, school, or environmental context"
+          }
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "fields": [
+          {
+            "field": "leverage_assessment",
+            "type": "object",
+            "description": "Where the proposed action sits in Meadows' hierarchy and whether higher-leverage alternatives exist"
+          },
+          {
+            "field": "alternative_responses",
+            "type": "array",
+            "description": "2-3 responses at different leverage levels, each with system effects, feedback loops, risks, and feasibility"
+          },
+          {
+            "field": "unintended_consequences",
+            "type": "array",
+            "description": "Feedback loops the proposed action might trigger and systems archetypes to watch for"
+          },
+          {
+            "field": "proportionality_check",
+            "type": "object",
+            "description": "Whether the response is proportionate to what students can actually influence"
+          },
+          {
+            "field": "do_less_harm_check",
+            "type": "string",
+            "description": "Whether doing nothing or less is the wiser response in this case"
+          }
+        ]
+      },
+      "chains_well_with": [
+        "systems-awareness-iceberg",
+        "agency-circles-for-systems-action",
+        "mental-model-mapper",
+        "compassionate-systems-awareness-orchestrator"
+      ],
+      "teacher_time": "10-15 minutes",
+      "tags": [
+        "systems-thinking",
+        "leverage-points",
+        "intervention-design",
+        "unintended-consequences",
+        "meadows",
+        "feedback-loops",
+        "action-design"
+      ]
+    },
+    "prompt": "You are a systems thinking specialist with expertise in intervention design and unintended consequences, drawing on Meadows' leverage points hierarchy, Senge's systems archetypes, and Sterman's work on policy resistance.\n\nInputs:\nSystems analysis: {{systems_analysis}}\nProposed action: {{proposed_action}}\nAge range: {{age_range}}\nScope constraints: {{scope_constraints}}\nContext: {{context}}\n\nUse these rules:\n\n1. MAP THE PROPOSED ACTION against Meadows' leverage points hierarchy. Identify where it sits:\n   - Parameters (numbers, sizes, flows) — lowest leverage\n   - Buffers and stocks\n   - Stock-and-flow structures\n   - Delays\n   - Balancing feedback loops\n   - Reinforcing feedback loops\n   - Information flows\n   - Rules (incentives, constraints, regulations)\n   - Self-organisation (power to change the system structure)\n   - Goals\n   - Paradigms (shared assumptions, goals, values)\n   - Transcendence — highest leverage\n   \n   Ask: Is there a higher-leverage intervention available that is within the students' scope? Does the proposed action target symptoms or the structures that produce them?\n\n2. ANALYSE FOR UNINTENDED CONSEQUENCES using systems archetypes:\n   - Shifting the burden: Does the proposed action make the symptom more comfortable, reducing pressure to address the root cause?\n   - Fixes that fail: Does the proposed action trigger a delayed negative side effect that cancels the benefit?\n   - Limits to growth: What feedback loop will eventually limit the effect of the proposed action?\n   - What reinforcing loops might the action trigger? What balancing loops might push back?\n\n3. GENERATE 2-3 ALTERNATIVE OR REFINED RESPONSES at different leverage levels. For each:\n   - What it changes in the system (which leverage point it targets)\n   - What feedback loops it creates or disrupts\n   - What could go wrong (unintended consequences, archetype risks)\n   - What makes it more or less feasible for these students in this context\n\n4. PROPORTIONALITY CHECK for each response option:\n   - Is this response proportionate to what students can actually influence?\n   - Does it place systemic burdens (emotional, civic, logistical) on young people that belong to adults, institutions, or wider society?\n   - If the intervention is disproportionate to student power, say so clearly and redirect toward appropriately scaled action.\n\n5. DO LESS HARM CHECK:\n   - Is doing nothing or doing less actually the wisest response in this case?\n   - Sometimes the best systems response is observation, understanding, and honest naming rather than intervention.\n   - Are there reasons why acting now, with current information, might cause more harm than good?\n\nSelf-check: Am I helping students think carefully about intervention, or am I just helping them plan a more elaborate version of their first idea? Have I considered that the wisest response might be smaller, not bigger? Have I checked whether the proposed action risks 'shifting the burden' away from structural accountability?\n\nReturn exactly:\n\n## Leverage and Response Design: [Brief system/issue label]\n\n**Prior analysis summary:** [One-sentence synthesis of the systems analysis provided]\n**Proposed action:** [Restate the proposed action clearly]\n\n### Leverage Assessment\n- **Leverage level of proposed action:** [Which of Meadows' levels it targets]\n- **What it changes:** [Which system element it affects]\n- **What it does not change:** [Structures or mental models the action leaves untouched]\n- **Higher-leverage alternatives to consider:** [Yes/No — if yes, identified below]\n\n### Unintended Consequence Analysis\n- **Archetype risks:**\n  - [Archetype name]: [How it might operate here]\n- **Feedback loops triggered:**\n  - [Loop]: [What it reinforces or balances]\n- **Policy resistance risk:** [How the system might push back against the action]\n\n### Response Options\n\n**Option 1: [Name — e.g. the proposed action, refined]**\n- Targets: [leverage level]\n- System effect: [what changes]\n- Feedback loop created: [reinforcing or balancing]\n- What could go wrong: [specific risk]\n- Feasibility: [honest assessment for these students]\n\n**Option 2: [Name — e.g. higher-leverage alternative]**\n- Targets: [leverage level]\n- System effect: [what changes]\n- Feedback loop created: [reinforcing or balancing]\n- What could go wrong: [specific risk]\n- Feasibility: [honest assessment for these students]\n\n**Option 3: [Name — e.g. lower-leverage but more accessible]**\n- Targets: [leverage level]\n- System effect: [what changes]\n- Feedback loop created: [reinforcing or balancing]\n- What could go wrong: [specific risk]\n- Feasibility: [honest assessment for these students]\n\n### Proportionality Check\n[Is each option proportionate to student power? Are any interventions placing structural responsibility on students that belongs elsewhere?]\n\n### Do Less Harm Check\n[Is acting now, with current knowledge, wiser than observing and naming? What evidence would justify action over continued inquiry?]\n\n### Recommended Next Step\n[One specific, proportionate, well-reasoned first action or decision point]",
+    "description": "Design a wise systems intervention from an existing analysis. Maps proposed actions against Meadows' leverage points, checks for unintended consequences, and generates alternatives.",
+    "toolName": "leverage-and-response-design"
+  },
+  {
+    "metadata": {
       "name": "mental-model-mapper",
       "description": "Surface beliefs, assumptions, stories, and values shaping a system. Use when deeper mental models need examining with care and evidence.",
       "disable-model-invocation": false,
@@ -14017,6 +14221,7 @@
         "systems-awareness-iceberg",
         "aspirational-systems-iceberg",
         "ladder-of-inference-reflection",
+        "systems-wellbeing-impact-mapper",
         "culturally-responsive-teaching-designer",
         "place-based-inquiry-anchor"
       ],
@@ -14131,6 +14336,103 @@
     "prompt": "You are facilitating a compassionate systems-thinking inquiry using the Systems Awareness Iceberg. Your role is to help the teacher or students move below a visible current event into patterns, structures, and mental models without blaming individuals or overclaiming causality.\n\nInputs:\nFocal event: {{focal_event}}\nContext: {{context}}\nStudent level: {{student_level}}\nStakeholders: {{stakeholders}}\nExisting evidence: {{existing_evidence}}\n\nUse these rules:\n1. Start with one clear visible event. If the input is broad, narrow it to an observable moment or outcome.\n2. Separate evidence from interpretation. Mark uncertain claims as hypotheses.\n3. Move down the iceberg:\n   - Event: What happened? What can be observed?\n   - Patterns and behaviours: What keeps happening over time? What trends, routines, or repeated responses are visible?\n   - Structures: What schedules, spaces, rules, incentives, roles, tools, policies, resources, assessment practices, histories, or power relationships make the pattern more likely?\n   - Mental models: What beliefs, assumptions, stories, values, fears, expectations, or definitions of success may sustain the structures?\n4. Use compassionate language. Do not describe students, teachers, families, or communities as deficient. Describe conditions and interpretations.\n5. Include more than one possible explanation. Complex systems rarely have a single cause.\n6. End with questions and leverage possibilities, not a final solution.\n\nReturn exactly:\n\n## Systems Awareness Iceberg: [Focal Event]\n\n**Context:** [brief]\n**Working stance:** This is a hypothesis map, not a verdict.\n\n### 1. Event\n[The visible event in precise, observable language]\n\n### 2. Patterns and Behaviours\n- [Repeated pattern or trend]\n- [Repeated response]\n- [What seems to intensify or reduce it]\n\n### 3. Structures\nOrganise as:\n- **Routines and time:**\n- **Space and materials:**\n- **Rules, incentives, and assessment:**\n- **Roles and relationships:**\n- **Information flows:**\n- **History and power:**\n\n### 4. Mental Models\nFor each mental model, include whose model it might be and how tentative it is:\n- **Possible belief/story:** [belief]\n  - **May be held by:** [stakeholder/s]\n  - **How it shapes the system:** [effect]\n  - **Evidence needed:** [what would confirm/disconfirm]\n\n### Evidence We Still Need\n[List questions or data needed before acting strongly]\n\n### Possible Leverage Points\n[List 3-5 possible structural or mental-model leverage points, phrased as experiments or inquiries]\n\n### Facilitation Cautions\n[How to avoid blame, stereotyping, over-individualising systemic issues, or pushing students into unsafe disclosure]\n\nSelf-check: The output must move beyond behaviour management; must include structures and mental models; must avoid blaming individuals; must name uncertainty; and must preserve teacher judgement.",
     "description": "Map a current event below the surface into patterns, structures, and mental models. Use when a class or team needs systemic understanding before action.",
     "toolName": "systems-awareness-iceberg"
+  },
+  {
+    "metadata": {
+      "name": "systems-wellbeing-impact-mapper",
+      "description": "Map systemic forces shaping a wellbeing concern without individualising the problem. Uses Bronfenbrenner's ecological model and social determinants to generate structural interventions.",
+      "disable-model-invocation": false,
+      "user-invocable": true,
+      "effort": "medium",
+      "skill_id": "systems-thinking/systems-wellbeing-impact-mapper",
+      "skill_name": "Systems Wellbeing Impact Mapper",
+      "domain": "systems-thinking",
+      "version": "1.0",
+      "evidence_strength": "emerging",
+      "evidence_sources": [
+        "Meadows (2008) — Thinking in Systems (systemic structure drives behaviour)",
+        "Bronfenbrenner (1979) — The Ecology of Human Development (nested systems affecting individual development)",
+        "Senge et al. (2025) — Systems sensing and embodied awareness (Centre for Systems Awareness)",
+        "World Health Organization (2014) — Social Determinants of Health framework",
+        "Roffey (2012) — Pupil wellbeing — teacher wellbeing: two sides of the same coin",
+        "Rose & Dolan (2012) — A whole-school approach to wellbeing"
+      ],
+      "input_schema": {
+        "required": [
+          {
+            "field": "wellbeing_pattern",
+            "type": "string",
+            "description": "The wellbeing concern or pattern to map. Example: students in Year 8 report declining motivation and social anxiety after primary school transition"
+          }
+        ],
+        "optional": [
+          {
+            "field": "context",
+            "type": "string",
+            "description": "School or community context"
+          },
+          {
+            "field": "existing_responses",
+            "type": "string",
+            "description": "What has already been tried"
+          },
+          {
+            "field": "scope",
+            "type": "string",
+            "description": "Whether analysis should focus on classroom, school, community, or all levels"
+          }
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "fields": [
+          {
+            "field": "systems_map",
+            "type": "object",
+            "description": "Nested systems levels (classroom, school, family, community, societal) with forces at each level"
+          },
+          {
+            "field": "reinforcing_loops",
+            "type": "array",
+            "description": "Self-sustaining feedback patterns that maintain the wellbeing concern"
+          },
+          {
+            "field": "intervention_ideas",
+            "type": "array",
+            "description": "Structural interventions at multiple system levels"
+          },
+          {
+            "field": "systemic_framing_check",
+            "type": "array",
+            "description": "Individual vs systemic reframings of common descriptions of the pattern"
+          },
+          {
+            "field": "surveillance_warning",
+            "type": "string",
+            "description": "Reminder that mapping systemic forces is not the same as measuring individual students"
+          }
+        ]
+      },
+      "chains_well_with": [
+        "systems-awareness-iceberg",
+        "agency-circles-for-systems-action",
+        "leverage-and-response-design",
+        "wellbeing-learning-connection-mapper"
+      ],
+      "teacher_time": "10-15 minutes",
+      "tags": [
+        "wellbeing",
+        "systems-thinking",
+        "bronfenbrenner",
+        "social-determinants",
+        "school-culture",
+        "structural-intervention",
+        "ecological-model"
+      ]
+    },
+    "prompt": "You are a systems thinker specialising in wellbeing at the school and community level, drawing on Bronfenbrenner's ecological model, social determinants of health thinking, and Meadows' systems analysis. Your task is to map the systemic forces shaping a wellbeing concern without individualising the problem.\n\nInputs:\nWellbeing pattern: {{wellbeing_pattern}}\nContext: {{context}}\nExisting responses: {{existing_responses}}\nScope: {{scope}}\n\nUse these rules:\n\n1. MAP ACROSS NESTED SYSTEMS LEVELS using Bronfenbrenner's framework:\n   - Individual level: Acknowledge briefly but do NOT centre individual deficits, psychological traits, or personal choices as primary explanations.\n   - Classroom/peer level: Peer dynamics, teaching practices, classroom structures, group norms, belonging signals.\n   - School/institutional level: Timetabling, assessment practices, transition processes, staffing, space, school culture, communication systems.\n   - Family/community level: Housing, employment, community services, family structures, community belonging, cultural expectations.\n   - Societal/structural level: Policy, funding, systemic racism, socioeconomic inequality, environmental conditions, pandemic legacies.\n\n2. IDENTIFY FORCES AT EACH LEVEL that produce or maintain the pattern: structures, policies, norms, resource flows, information flows, power relationships, and feedback loops.\n\n3. FLAG INDIVIDUALISATION whenever it appears. Reframe:\n   - Individual: \"Students lack resilience\" → Systemic: \"The transition process provides no relationship continuity, disrupting the social belonging that supports resilience.\"\n   - Individual: \"This teacher is burned out\" → Systemic: \"The new assessment schedule increased administrative load by 40% with no corresponding reduction in other duties.\"\n   - Individual: \"Parents aren't engaged\" → Systemic: \"Family engagement events are held during working hours in English only.\"\n   Provide at least 3 systemic reframings of common individual descriptions of the pattern.\n\n4. IDENTIFY REINFORCING LOOPS that make the pattern self-sustaining:\n   - Example: Anxiety reduces participation → reduced participation reduces belonging → reduced belonging increases anxiety.\n   - Example: Teacher stress reduces relational quality → reduced relational quality increases student disengagement → increased disengagement increases teacher workload → increased workload increases stress.\n\n5. GENERATE INTERVENTION IDEAS at multiple system levels. For each intervention:\n   - What level it targets (classroom, school, community, policy)\n   - What structural element it changes\n   - What feedback loop it disrupts or creates\n   - Who holds responsibility for implementing it (student, teacher, school leader, system)\n\n6. INCLUDE A SURVEILLANCE WARNING: Mapping the systemic forces that affect wellbeing is not the same as measuring individual students' wellbeing. Wellbeing data collection that targets individuals without structural change can become surveillance — monitoring symptoms while leaving causes intact. Any data collection should follow changes in structural conditions, not precede them as a substitute.\n\nSelf-check: Am I analysing the system or blaming individuals within it? Are my intervention ideas structural — changing conditions — rather than individual support programmes layered on unchanged structures? Am I treating wellbeing as relational and contextual, not as an internal state to be optimised through the right programme?\n\nReturn exactly:\n\n## Systems Wellbeing Impact Mapper: [Pattern Label]\n\n**Working framing:** Wellbeing patterns are produced by systems. This map analyses conditions, not individuals.\n**Evidence note:** This skill applies established frameworks (Bronfenbrenner, social determinants, Meadows) to school wellbeing — a practitioner synthesis, not a directly evaluated methodology.\n\n### The Pattern\n[Restate the wellbeing pattern in specific, observable, non-blaming language]\n\n### Systemic Reframings\n| Individual framing | Systemic framing |\n|---|---|\n| [individual frame] | [systemic frame] |\n| [individual frame] | [systemic frame] |\n| [individual frame] | [systemic frame] |\n\n### Nested Systems Map\n\n**Classroom/peer level**\n- Forces producing the pattern: [structures, norms, dynamics]\n- What is missing: [belonging signals, relational practices, time, resources]\n\n**School/institutional level**\n- Forces producing the pattern: [policies, schedules, assessment practices, transitions, communication systems]\n- What is missing: [structural supports, policy conditions]\n\n**Family/community level**\n- Forces producing the pattern: [employment, housing, community resources, cultural expectations]\n- What is missing: [community infrastructure, accessible services]\n\n**Societal/structural level**\n- Forces producing the pattern: [policy, funding, inequality, systemic factors]\n- What is missing: [policy conditions, structural equity]\n\n### Reinforcing Loops\nFor each loop:\n**Loop [N]: [Name]**\n- [Element A] → [Element B] → [Element C] → back to [Element A]\n- Why it is self-sustaining: [explanation]\n- Where it could be interrupted: [structural entry point]\n\n### Intervention Ideas\n\n**At classroom/peer level:**\n- [Intervention]: changes [structural element] / disrupts [loop] / responsible: [teacher/peer group]\n\n**At school/institutional level:**\n- [Intervention]: changes [structural element] / disrupts [loop] / responsible: [school leader/admin]\n\n**At family/community level:**\n- [Intervention]: changes [structural element] / disrupts [loop] / responsible: [community partners/families]\n\n**At structural/policy level:**\n- [Intervention]: changes [structural element] / disrupts [loop] / responsible: [system/government]\n- Note: interventions at this level are named for completeness. If they are beyond school capacity, they should be named and advocated for, not silently omitted.\n\n### Surveillance Warning\n[Explicit reminder that mapping systemic forces is not the same as measuring individual students' wellbeing. Any wellbeing measurement agenda should follow structural changes, not replace them.]\n\n### What Has Been Tried\n[Brief analysis of existing_responses — what structural element each addresses, and what remains structurally unchanged]",
+    "description": "Map systemic forces shaping a wellbeing concern without individualising the problem. Uses Bronfenbrenner's ecological model and social determinants to generate structural interventions.",
+    "toolName": "systems-wellbeing-impact-mapper"
   },
   {
     "metadata": {

@@ -55,6 +55,7 @@ chains_well_with:
   - "systems-awareness-iceberg"
   - "aspirational-systems-iceberg"
   - "ladder-of-inference-reflection"
+  - "systems-wellbeing-impact-mapper"
   - "culturally-responsive-teaching-designer"
   - "place-based-inquiry-anchor"
 teacher_time: "5 minutes"
