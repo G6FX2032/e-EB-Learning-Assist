@@ -1,35 +1,54 @@
 # STATE.md — education-agent-skills
 
-**Last updated:** 2026-05-18 (Session 5)
+**Last updated:** 2026-05-18 (Session 6)
 
 ## What was done
 
-Added 3 new skills across 2 existing domains (no new domains):
+Added 2 orchestrator skills in original-frameworks:
 
-1. **systems-thinking/leverage-and-response-design** — Fills the action gap in the systems-thinking domain. Given a systems analysis (iceberg, mental models, agency circles), helps students and educators design a wise intervention using Meadows' 12 leverage points hierarchy. Checks for unintended consequences using systems archetypes (shifting the burden, fixes that fail), generates 2-3 alternative responses at different leverage levels, includes a proportionality check (systemic burdens should not fall on young people), and explicitly asks whether doing nothing or less is the wisest response. evidence_strength: moderate.
+1. **original-frameworks/assessment-design-orchestrator** — Routes teachers between five assessment design pathways: formative assessment, rubric/criteria design, authentic/performance assessment, peer and self-assessment, and diagnostic/pre-assessment. Enforces a pathway-first approach (present options before routing). Integrates Messick (1989) validity check at every pathway and a UDL-informed equity check for format barriers. Explicit do-not-proceed-if gates: no rubric without exemplars, no peer assessment without training students, no assessment before learning goals are clear. Evidence sources include Black & Wiliam (1998), Wiliam (2011), Wiggins (1998), Sadler (1989), Hattie & Timperley (2007), Messick (1989), Topping (2009), Zimmerman (2002), Manning (2023-2026). evidence_strength: emerging.
 
-2. **systems-thinking/systems-wellbeing-impact-mapper** — Maps systemic forces shaping a wellbeing concern at school or community level using Bronfenbrenner's ecological model (nested systems) and social determinants of health thinking. Explicitly redirects individual explanations ("students lack resilience") to systemic framings ("the transition process provides no relationship continuity"). Generates structural interventions at multiple system levels. Includes a surveillance warning: mapping systemic forces is not the same as measuring individual students' wellbeing. evidence_strength: emerging (practitioner synthesis of established frameworks).
+2. **original-frameworks/inclusive-design-orchestrator** — Coordinates UDL and differentiation tools through a three-tier universal-first hierarchy: universal design before targeted differentiation before individualised accommodation. Routes between four pathways: proactive barrier removal, existing plan audit, targeted differentiation, and assessment accessibility. Includes explicit specialist referral flags (for needs requiring educational psychology, speech-language therapy, occupational therapy), a tokenism check (modifications must address actual identified barriers), and an honest warning that inclusive design is necessary but not sufficient for genuine inclusion. Evidence sources: Rose & Meyer (2002), CAST (2018), Meyer Rose & Gordon (2014), Ok Rao Bryant & McDougall (2017), Tomlinson (2001), Gay (2010), Manning (2023-2026). evidence_strength: emerging.
 
-3. **questioning-discussion/perspective-taking-designer** — Designs structured perspective-taking activities with anti-projection guardrails. Distinguishes contextual perspective-taking (investigating what someone actually thought/felt, using evidence) from projection (imagining what we would feel in their situation). Four-phase sequence: context-building, perspective identification, exploration, synthesis. Assessment criteria focus on reasoning quality, not emotional performance. Safety check for perpetrator empathy. Developmental calibration via Selman's stages. evidence_strength: moderate.
+Both orchestrators carry full composite-framework evidence governance: Evidence Space, Component Evidence, Synthesis Evidence, What This Skill Should Not Claim, Appropriate Use, and Dependency Maintenance sections.
 
 Also:
-- Restored `systems-wellbeing-impact-mapper` chain reference in `mental-model-mapper/SKILL.md` (the chain had been removed as a ghost reference in a previous session; the skill now exists).
-- CI workflow updated: 142 → 145.
-- CLAUDE.md updated: 145 skills.
-- README updated: badge, description, MCP tool/prompt counts (149 tools, 145 prompts).
+- CI workflow updated: 145 → 147
+- CLAUDE.md updated: 147 skills
+- README badge and description updated: 147 skills
 
 ## What was verified
 
-- All 3 description fields verified ≤250 characters via Python: 181, 185, 198 chars
+- Both description fields verified ≤250 characters via Python: 207 and 202 chars
 - All chains_well_with targets confirmed to exist on disk before writing
-- `python3 scripts/validate-skills.py`: 145 skills, 0 errors, 4 pre-existing warnings (line-length on unrelated skills)
-- `python3 scripts/validate-registry.py`: 145 skills, 19 domains — valid
+- `python3 scripts/validate-skills.py`: 147 skills, 0 errors, 4 pre-existing warnings (line-length on unrelated skills)
+- `python3 scripts/validate-registry.py`: 147 skills, 19 domains — valid
 - `npx playwright test`: 20/20 pass
 - `cd mcp-server && npm run build && npm test`: 16/16 pass
-- Committed and pushed: 0c3ba84
+- Committed and pushed: b88d3b8
+
+## Chain targets verified
+
+Assessment Design Orchestrator:
+- formative-assessment-technique-selector ✓
+- assessment-validity-checker ✓
+- gap-analysis-from-student-work ✓
+- differentiation-adapter ✓
+- self-regulation-scaffold-generator ✓
+- inclusive-design-orchestrator ✓ (created this session)
+- udl-barrier-anticipator ✓
+
+Inclusive Design Orchestrator:
+- udl-lesson-auditor ✓
+- udl-options-designer ✓
+- udl-barrier-anticipator ✓
+- differentiation-adapter ✓
+- assessment-design-orchestrator ✓ (created this session)
+- language-demand-analyser ✓
+- scaffolded-task-modifier ✓
 
 ## What's next
 
-- Systems-thinking domain now has 7 skills: iceberg, aspirational iceberg, mental model mapper, ladder of inference, agency circles, leverage-response design, wellbeing impact mapper. A composite orchestrator linking these into a full inquiry arc is a logical next step.
-- Perspective-taking designer is the only skill in questioning-discussion that deals with historical/cultural empathy — cross-domain with historical-thinking domain is a natural chain to explore.
-- The wellbeing mapper's "do not individualise" principle has natural overlap with trauma-informed-practice-designer in wellbeing-motivation-agency — worth documenting as a cross-domain pair.
+- Systems-thinking orchestrator: systems-thinking domain now has 7 skills (iceberg, aspirational iceberg, mental model mapper, ladder of inference, agency circles, leverage-response design, wellbeing impact mapper). A composite orchestrator linking these into a full inquiry arc is the logical next step (separate from the existing compassionate-systems-awareness-orchestrator which covers a subset).
+- Perspective-taking designer (questioning-discussion) has natural cross-domain chains with historical-thinking — worth formalising.
+- The assessment-design-orchestrator and inclusive-design-orchestrator now cross-chain with each other, making a combined "accessible assessment design" flow possible as a future composite skill.
