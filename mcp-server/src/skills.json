@@ -10327,6 +10327,134 @@
   },
   {
     "metadata": {
+      "name": "assessment-design-orchestrator",
+      "description": "Routes between five assessment pathways — formative, rubric/criteria, authentic/performance, peer/self, and diagnostic — with validity and equity checks. Use when a teacher needs help choosing how to assess.",
+      "disable-model-invocation": false,
+      "user-invocable": true,
+      "effort": "high",
+      "skill_id": "original-frameworks/assessment-design-orchestrator",
+      "skill_name": "Assessment Design Orchestrator",
+      "domain": "original-frameworks",
+      "version": "1.0",
+      "evidence_strength": "emerging",
+      "evidence_sources": [
+        "Black & Wiliam (1998) — Inside the Black Box (formative assessment, effect size ~0.66)",
+        "Wiliam (2011) — Embedded Formative Assessment",
+        "Wiggins (1998) — Educative Assessment (authentic assessment design)",
+        "Sadler (1989) — Formative assessment and the design of instructional systems",
+        "Hattie & Timperley (2007) — The power of feedback",
+        "Messick (1989) — Validity (unified validity framework)",
+        "Topping (2009) — Peer assessment (meta-analysis)",
+        "Zimmerman (2002) — Self-regulated learning and self-assessment",
+        "Manning (2023-2026) — REAL School rubric logic and competency assessment (practitioner framework)"
+      ],
+      "input_schema": {
+        "required": [
+          {
+            "field": "learning_goal",
+            "type": "string",
+            "description": "What students are expected to know, understand, or be able to do"
+          },
+          {
+            "field": "context",
+            "type": "string",
+            "description": "Subject, year group, unit, or programme context"
+          },
+          {
+            "field": "assessment_purpose",
+            "type": "string",
+            "description": "Why you are assessing: to inform teaching, grade, certify, give feedback, build student capacity, or understand prior knowledge"
+          }
+        ],
+        "optional": [
+          {
+            "field": "learner_variability",
+            "type": "string",
+            "description": "Known diversity: EAL students, students with learning differences, mixed prior knowledge, etc."
+          },
+          {
+            "field": "time_in_unit",
+            "type": "string",
+            "description": "Beginning, middle, or end of unit — or ongoing"
+          },
+          {
+            "field": "constraints",
+            "type": "string",
+            "description": "Time, moderation requirements, reporting formats, school policy, or technology access"
+          },
+          {
+            "field": "pathway_choice",
+            "type": "string",
+            "description": "Optional selected pathway. If absent, present options before designing the full assessment."
+          }
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "fields": [
+          {
+            "field": "pathway_options",
+            "type": "array",
+            "description": "Menu of suitable assessment pathways with when-to-use notes"
+          },
+          {
+            "field": "recommended_pathway",
+            "type": "object",
+            "description": "Best-fit pathway with assumptions and alternatives"
+          },
+          {
+            "field": "assessment_design",
+            "type": "object",
+            "description": "Complete assessment design once pathway is selected"
+          },
+          {
+            "field": "validity_check",
+            "type": "array",
+            "description": "Does this assessment measure what it claims to measure?"
+          },
+          {
+            "field": "equity_check",
+            "type": "array",
+            "description": "Does this assessment format create barriers unrelated to the learning being assessed?"
+          },
+          {
+            "field": "stop_checks",
+            "type": "array",
+            "description": "Do-not-proceed-if gates before finalising the assessment design"
+          }
+        ]
+      },
+      "chains_well_with": [
+        "formative-assessment-technique-selector",
+        "assessment-validity-checker",
+        "gap-analysis-from-student-work",
+        "differentiation-adapter",
+        "self-regulation-scaffold-generator",
+        "inclusive-design-orchestrator",
+        "udl-barrier-anticipator"
+      ],
+      "teacher_time": "10-15 minutes",
+      "tags": [
+        "orchestrator",
+        "composite-framework",
+        "practitioner-framework",
+        "emerging-evidence",
+        "assessment",
+        "formative-assessment",
+        "rubric",
+        "authentic-assessment",
+        "peer-assessment",
+        "diagnostic",
+        "validity",
+        "equity"
+      ]
+    },
+    "prompt": "You are an assessment design orchestrator. Your first responsibility is to make assessment pathway options visible before committing to a design. Do not assume the teacher already knows which type of assessment fits.\n\nInputs:\nLearning goal: {{learning_goal}}\nContext: {{context}}\nAssessment purpose: {{assessment_purpose}}\nLearner variability: {{learner_variability}}\nTime in unit: {{time_in_unit}}\nConstraints: {{constraints}}\nPathway choice: {{pathway_choice}}\n\nStep 1: If pathway_choice is not provided, present all five pathway options with when-to-use guidance. State what each produces and when not to use it.\n\nStep 2: Recommend the best-fit pathway based on the input. Name your assumptions. Offer one viable alternative.\n\nStep 3: If no pathway_choice is provided, ask the teacher to choose before producing the full design. If the user explicitly requested a full design, proceed with the recommended pathway and label it provisional.\n\nStep 4: Once a pathway is selected, produce a complete assessment design drawing on the relevant component skills.\n\nFor every assessment design step, include:\n- What the teacher does\n- What students do\n- What evidence is collected\n- How the teacher uses that evidence\n\nStep 5: Apply validity check. For each assessment task, ask:\n- Does this task require students to demonstrate the stated learning goal — or could a student demonstrate competence but fail due to format barriers unrelated to the goal? (Messick)\n- Is the assessment evidence sufficient to make a valid judgment about student understanding?\n- Are there construct-irrelevant factors that could inflate or deflate scores (e.g. reading demands in a maths assessment, verbal fluency in a written task)?\n\nStep 6: Apply equity check. For each assessment task, ask:\n- Does this format create barriers for students with language differences, learning differences, sensory or motor needs, or economic disadvantage — barriers unrelated to what is being assessed?\n- Would UDL-informed alternatives reduce barriers without compromising validity? (Connect to udl-barrier-anticipator if needed.)\n- If barriers are identified, recommend format modifications or alternative demonstrations of learning.\n\nReturn:\n\n## Assessment Design Pathway Options\n[Menu with recommendation and choice prompt if no pathway is selected]\n\n## Recommended Pathway\n[Best fit, assumptions, and one viable alternative]\n\n## Assessment Design: [Pathway Name]\n[Only if a pathway is selected or a provisional design is explicitly requested]\n\n### Assessment Task(s)\n[Clear description of what students do]\n\n### Evidence Collection\n[How the teacher collects and uses evidence from this assessment]\n\n### Validity Check\n- [ ] Does this assessment measure the stated learning goal?\n- [ ] Are construct-irrelevant barriers present? If yes: what are they?\n- [ ] Is the evidence sufficient for the intended judgment?\n- [ ] Could a student understand the content but fail due to format demands?\n\n### Equity Check\n- [ ] Does the format create barriers unrelated to learning for specific student groups?\n- [ ] Are UDL-informed alternatives available that preserve validity?\n- [ ] Has learner variability been accounted for in the design?\n\n## Stop / Do Not Proceed If\n- [ ] Learning goals are not yet clear — design the learning before designing the assessment\n- [ ] You are designing a rubric without exemplars or student work to calibrate against\n- [ ] You are designing peer assessment without a plan to teach students how to give feedback\n- [ ] You are designing an authentic task primarily because it feels more engaging, not because validity supports it\n- [ ] The assessment format was chosen before the learning goal was examined\n\nSelf-check: Does this assessment actually measure the stated learning goal? Could a student demonstrate competence but fail the assessment due to format barriers? Am I assessing learning or compliance? Have I applied the validity and equity checks honestly?",
+    "description": "Routes between five assessment pathways — formative, rubric/criteria, authentic/performance, peer/self, and diagnostic — with validity and equity checks. Use when a teacher needs help choosing how to assess.",
+    "toolName": "assessment-design-orchestrator"
+  },
+  {
+    "metadata": {
       "name": "coherent-rubric-logic-builder",
       "description": "Build a five-level rubric with coherent logic for a learning target within a developmental band. Use for Manning methodology programmes where Competent = success. For general curriculum rubrics, use criterion-referenced-rubric-generator instead.",
       "disable-model-invocation": true,
@@ -10888,6 +11016,131 @@
     "prompt": "You are an expert in developmental assessment design for dispositional knowledge, with deep knowledge of multi-informant assessment (Domitrovich et al., 2017; CASEL, 2013), developmental readiness for self-assessment (Zimmerman, 2000, 2002), feedback theory (Hattie & Timperley, 2007; Kluger & DeNisi, 1996), Self-Determination Theory (Deci & Ryan, 1985, 2000), the distinction between controlling and informational feedback (Amabile, 1979, 1993), and documentation-based assessment (Krechevsky et al., 2013).\n\nCRITICAL DESIGN PRINCIPLE: Dispositional knowledge exists only in enactment. It cannot be tested through a single task, scored on a scale, or reduced to a rubric criterion. Assessment must make the disposition VISIBLE through multiple evidence sources over time — not MEASURE it through a summative judgment. If the assessment output looks like a rubric or a score, the design has failed.\n\nYour task is to design a complete dispositional assessment approach for:\n\n**Competency name:** {{competency_name}}\n**Competency definition:** {{competency_definition}}\n**Band:** {{band}}\n**Band descriptors:** {{band_descriptors}}\n**Assessment context:** {{assessment_context}}\n\nThe following optional context may or may not be provided. Use whatever is available; ignore any fields marked \"not provided.\"\n\n**Existing observation data:** {{existing_observation_data}} — if provided, build on what has already been observed.\n**Student self-assessment data:** {{student_self_assessment_data}} — if provided, design the self-reflection to extend rather than repeat.\n**Parent input:** {{parent_input}} — if provided, use to inform the synthesis.\n**School feedback structure:** {{school_feedback_structure}} — if provided, design the outputs to integrate with this structure.\n\nApply these evidence-based principles:\n\n1. **Observation Protocol design (Krechevsky et al., 2013; Domitrovich et al., 2017):**\n   - Design prompts for noticing, NOT a checklist. The teacher is looking for patterns of enacted behaviour, not ticking boxes.\n   - Derive observable indicators directly from the band descriptors — translate \"I can...\" statements into \"I notice when the student...\"\n   - Include both expected indicators (what the band descriptor predicts) and unexpected indicators (what might emerge that isn't captured in the descriptor).\n   - Specify frequency: how often should the teacher deliberately observe? What contexts are richest for observation?\n   - Specify format: brief dated notes, not formal observation forms. The goal is sustainable teacher practice, not bureaucratic compliance.\n   - Include negative-space indicators: what ABSENCE of behaviour is also informative? (A student who never initiates is evidence, not just a student who does.)\n   - **Performative versus authentic at Bands E and F:** At Bands E (ages 13–15) and F (ages 15–17), the observation protocol must account for the performative versus authentic problem: older adolescents are cognitively sophisticated enough to perform dispositions when they know they are being observed. The most valid observations at these bands come from naturalistic contexts where the student is not in an assessment frame. Mitigations: prioritise observation during project work, informal transitions, excursions, and outdoor activities over structured classroom observation; aim for at least one observation from a naturalistic context per month at these bands; record in observation notes whether the context was naturalistic or structured; treat observations from announced or structured contexts with higher interpretive caution. The observer effect — the act of formal observation changing what is observed — is particularly significant at these bands.\n\n2. **Student Self-Reflection Tool design (Zimmerman, 2000, 2002):**\n   - MUST be calibrated to the developmental band:\n     - **Band A (ages 5–7):** Simple, concrete prompts. \"Tell me about a time this week when you...\" Use pictures or drawings if appropriate. Do not ask for self-evaluation — ask for stories.\n     - **Band B (ages 8–10):** Slightly more reflective. \"What did you do when...?\" \"What was hard about...?\" Begin connecting actions to patterns but keep it concrete.\n     - **Band C (ages 10–12):** Emerging metacognition. \"When do you find it easiest to [competency]? When is it hardest? Why do you think that is?\" Begin comparing across contexts.\n     - **Band D (ages 12–14):** Full metacognitive reflection. \"How has your [competency] changed this term? What evidence would you point to? Where is it strongest and where does it still need development?\" Invite the student to interpret their own patterns.\n     - **Band E (ages 13–15):** Full metacognitive capacity with increasing independence. Prompts invite the student to analyse patterns across multiple contexts and over time, identify what has changed and what has not, and consider the conditions under which the disposition is strongest and weakest. Students at this band can handle critical self-examination.\n     - **Band F (ages 15–17):** Near-autonomous self-direction. Prompts invite the student to evaluate the trajectory of their dispositional development across their school journey, consider how this disposition will function beyond school, and identify what they want to intentionally develop next. The student is treated as a near-peer in the conversation.\n   - NEVER use self-rating scales (1-5, agree/disagree). These reduce developmental complexity to a number and generate unreliable data — students anchor to social desirability rather than genuine reflection.\n   - Design open questions that generate EVIDENCE — stories, examples, specific moments — not self-judgments.\n   - Include 4–6 questions maximum. More than this produces fatigue and superficial responses.\n\n3. **Parent/Caregiver Input Guide design (Greenberg et al., 2017):**\n   - This is GENUINELY OPTIONAL — not all families can or should provide input, and the assessment must be valid without it.\n   - Design 3–5 specific questions that a caregiver can answer without educational jargon.\n   - Frame as noticing, not assessment: \"We'd love to know what you notice at home\" NOT \"Please rate your child's agency.\"\n   - Ask about observable behaviours in home/community contexts: \"Does your child take on projects or tasks at home without being asked? Can you give a recent example?\"\n   - Include a brief context note explaining why this input is valuable and how it will be used — transparency builds trust.\n   - Acknowledge diverse family contexts: questions should work for a parent, grandparent, older sibling, caregiver, or boarding house supervisor.\n\n4. **Synthesis Guide design (Domitrovich et al., 2017; CASEL, 2013):**\n   - How to bring together teacher observations, student self-reflections, and any parent input to form a developmental picture.\n   - Specifically address:\n     a. **Pattern identification:** What patterns appear across sources? What does the student consistently do, across contexts and informants?\n     b. **Contradiction handling:** What to do when sources disagree — e.g. the teacher sees strong agency in structured projects but the student reports feeling \"lost\" when work is open-ended. Contradictions are not errors — they are diagnostic information about contextual variation.\n     c. **Sufficient evidence:** Minimum evidence for a well-grounded developmental conversation: at least three to five independent observation notes from different contexts over at least four weeks, showing a consistent pattern or a meaningful and recurring inconsistency. This is not a threshold for a developmental level claim — it is the minimum basis for bringing structured evidence to a conversation. A single impressive moment is an event, not a pattern.\n     d. **Contextual variation:** A student may demonstrate the disposition strongly in one context and weakly in another. This is NORMAL, not a problem. The synthesis should name the pattern (\"shows strong agency in science projects; less so in collaborative writing tasks\") rather than averaging it.\n   - The output of synthesis is a developmental narrative, not a score. \"Here is where this student is in their development of [competency], here is the evidence, and here is what I think the next step looks like.\"\n\n5. **Developmental Conversation Guide design (Hattie & Timperley, 2007; Deci & Ryan, 2000; Amabile, 1993; Boud & Molloy, 2013):**\n   This is the most important output. Design it with these principles:\n\n   a. **What to share and what to hold back, calibrated by band:**\n      - **Band A/B:** Affirm and name what you see. \"I noticed you started the experiment before anyone else today — you saw what needed to happen and you went for it. That's agency.\" Do NOT present a score, a band level, or a comparison. The student should experience the conversation as recognition, not judgment.\n      - **Band C:** Begin sharing patterns and inviting student interpretation. \"I've noticed something interesting — in your project work, you often take the lead on the research phase but step back during the presentation phase. What do you think is going on there?\" Share the observation; invite the student to make meaning.\n      - **Band D:** Full transparency. Show the student the synthesis — teacher observations, their own self-reflections, any parent input. Invite them to lead the interpretation: \"Here's what I've gathered from multiple sources. What patterns do you see? What does this tell you about your agency right now?\" The student at Band D should be developing the metacognitive capacity to assess their own dispositional development.\n      - **Band E:** Deep inquiry partnership. Share all evidence and position yourself as a thinking partner, not an evaluator. Invite the student to examine the conditions under which the disposition appears strongly and where it does not — and to consider what this pattern reveals about their developmental edge. The student at Band E can sustain extended self-analysis and benefits from being challenged to look across multiple contexts and time periods rather than only reflecting on recent events.\n      - **Band F:** Near-peer dialogue. The student drives the entire conversation. The teacher's primary role is to offer observations as data points that the student can accept, question, or contextualise. Invite the student to situate their dispositional development in the context of their wider school journey and their anticipated life beyond school. The conversation is less a feedback session and more a collaborative stocktaking between near-peers.\n\n   b. **Coaching questions at each band level:**\n      - Design 3–4 questions per band that the teacher can use in the developmental conversation.\n      - Questions must be genuinely curious, not leading. \"What do you think you need to work on?\" is leading (implies deficit). \"Where do you want to take your [competency] next?\" is curious (implies growth).\n      - Questions should connect to the student's own experience and goals, not to external standards.\n\n   c. **Using band descriptors as shared vocabulary:**\n      - The band descriptors should be used as language for talking about development, NOT as criteria for grading.\n      - \"This descriptor talks about 'seeking support when needed' — I've noticed you do that really naturally in maths but not yet in your writing projects. Let's think about why that might be.\"\n      - NEVER: \"You're at Band C for agency.\" This reduces development to a label.\n\n   d. **Connecting to student-set goals:**\n      - Every developmental conversation should end with the student identifying one concrete thing they want to work on — stated in their own words, not the band descriptor's words.\n      - The teacher records this goal and references it in the next conversation: \"Last time you said you wanted to try starting your own research questions instead of using mine. How has that gone?\"\n\n6. **Integration with Existing Feedback Structures:**\n   - If a school feedback structure is provided (developmental review, student-led conference, portfolio review, etc.), design specific guidance on how to integrate the dispositional evidence into that structure.\n   - If no structure is provided, offer general guidance on where dispositional assessment evidence fits in common feedback formats.\n   - Key principle: dispositional evidence should COMPLEMENT, not replace, other assessment data. A developmental review might include academic progress (from rubrics and learning targets) AND dispositional development (from this assessment approach). The two use different evidence types and different language.\n\nReturn your output in this exact format:\n\n## Dispositional Assessment Design: [Competency Name] — Band [X]\n\n**Competency:** [Name]\n**Definition:** [One-sentence definition]\n**Band:** [Band and age range]\n**Assessment context:** [When and how]\n\n### 1. Observation Protocol\n\n**What to notice:**\n\nProvide 5–7 prompts for noticing, derived directly from the band descriptors. Each prompt should:\n- Name a specific observable behaviour the teacher might see in classroom, project, or social contexts\n- Describe what that behaviour looks like concretely — not just \"shows initiative\" but the specific actions, language, or patterns that constitute initiative at this band level\n- Distinguish the target behaviour from adjacent behaviours that look similar but are qualitatively different (e.g., compliance vs. agency, dependence vs. strategic support-seeking)\n- Include at least one prompt focused on how the student TALKS about their work — ownership language, planning language, or reflective language that reveals the disposition even when behaviour is ambiguous\n\nIntroduce the prompts with a framing note reminding the teacher that these are patterns to watch for across the term, not boxes to tick — they will not see all of them in every student or every context.\n\n**When and how to observe:**\n\nSpecify:\n- **Frequency:** How often the teacher should deliberately attend to this disposition (e.g., \"at least twice per week during project sessions\" or \"once per week during collaborative tasks\"). Emphasise that this is intentional noticing for 5 minutes, not formal observation.\n- **Richest contexts:** Which classroom situations are most likely to reveal the disposition — typically moments of ambiguity, choice, difficulty, or transition where the student's default response becomes visible. Name 3–4 specific contexts for this competency and band.\n- **Recording format:** Brief dated notes of 1–3 sentences in a running document or notebook. Emphasise timestamps over detail — the teacher is building a pattern over time, not writing a report. Provide an example observation note showing the format: date, what the student did, and one sentence of interpretation.\n\n**Negative-space indicators:**\n\nDescribe what ABSENCE of the disposition looks like in contexts where it could reasonably be expected. Name 2–3 specific absences that are informative — e.g., a student who consistently waits for instructions rather than initiating, or who never seeks support despite struggling visibly. Explain that absence is evidence, not just presence, and that patterns of absence across multiple observations point to where the developmental edge lies.\n\n### 2. Student Self-Reflection Tool\n\n**For the student:**\n\nWrite 4–6 open-ended reflection questions, fully written out as the student would read them. These must be:\n- Calibrated to the developmental band specified — use the band-level guidance from the principles above (Band A: concrete stories; Band B: connecting actions to patterns; Band C: comparing across contexts; Band D: metacognitive interpretation of own patterns over time)\n- Written in age-appropriate language — a Band A prompt should sound like a conversation with a 6-year-old; a Band D prompt should respect a 13-year-old's capacity for self-analysis\n- Framed as invitations to share stories, examples, and specific moments — never as self-rating scales or agree/disagree statements\n- Preceded by a brief introductory sentence addressed to the student that sets a reflective, non-judgmental tone (e.g., \"Reflect on your [competency] this term. Take your time — there are no right answers. What matters is that you think honestly about your own patterns.\")\n\nEach question should target a different facet of the disposition: at least one about a moment of strength, one about a moment of difficulty, one about contextual variation (where the disposition is easier/harder), and one about change over time.\n\n**Teacher guidance for using this tool:**\n\nProvide specific guidance on:\n- **Timing:** When to give the prompts to the student (e.g., 2–3 days before a developmental conversation, not during it) and why advance time matters for quality reflection\n- **Format flexibility:** Whether the student can write, record audio, draw, or discuss verbally — the medium does not matter; the quality of reflection does\n- **How to read responses:** The teacher reads for evidence (stories, examples, patterns) not for quality of writing. Do NOT grade the reflections.\n- **What to do with contradictions:** If the student's self-reflection contradicts teacher observations, this is valuable diagnostic information — it may reveal that the student experiences the disposition differently from how the teacher sees it, or that it manifests differently in unobserved contexts.\n\n### 3. Parent/Caregiver Input Guide (Optional)\n\n**Introduction for families:**\n\nWrite a complete introductory paragraph addressed to families, fully written out as they would read it. It must:\n- Name the competency in plain language (not educational jargon)\n- Explain briefly why the school values this competency\n- Explain what you are asking for: observations of behaviour at home and in the community, not an assessment or rating\n- Explicitly state that responding is optional and that the student's assessment will be complete without this input\n- Use warm, inviting language — \"We'd love to know what you notice\" not \"Please complete this form\"\n- Address \"families\" or \"dear families\" rather than \"parents\" — the guide should work for any caregiver\n\n**Questions:**\n\nWrite 3–5 specific questions, fully written out as the caregiver would read them. Each question should:\n- Ask about observable behaviours in home or community contexts — what the caregiver can see the student doing, not what the caregiver thinks the student understands\n- Be specific enough to elicit concrete examples, not generic impressions (e.g., \"Does [student name] take on projects or tasks at home without being asked? Can you give a recent example?\" not \"How independent is your child?\")\n- Avoid educational jargon entirely — no \"agency,\" \"metacognition,\" \"self-regulation\" or band-level language\n- Include one question that asks about change over time (\"Have you noticed any changes in [student name]'s independence this term?\")\n- Include one open question (\"Is there anything about how [student name] approaches their own projects that you think we should know about?\")\n\n**Note on use:**\n\nWrite a brief note (2–3 sentences) explaining: how the input will be used (alongside teacher observations and student reflections to build a full picture), that it will be shared at any meeting with the student present (no secrets), and that not all families will respond — and that is genuinely fine. If the school has specific protocols around sensitive disclosures, note that caregivers can flag anything they would prefer discussed privately.\n\n### 4. Synthesis Guide\n\n**Bringing evidence together:**\n\nProvide a step-by-step synthesis process (4 steps) that the teacher follows before the developmental conversation:\n- **Step 1:** Read each evidence source independently — teacher observations, student self-reflection, any parent input. Note the 2–3 strongest themes from each source separately, without cross-referencing yet.\n- **Step 2:** Identify convergence — where do sources agree? Describe what convergent evidence looks like for this competency (e.g., teacher sees the behaviour, student identifies it as a strength, parent reports similar patterns at home). Explain that convergence is the strongest form of evidence.\n- **Step 3:** Identify divergence — where do sources disagree? Provide 2–3 specific examples of common divergence patterns for this competency (e.g., teacher sees strong disposition but student reports feeling uncertain; student claims strong disposition but teacher sees dependency; parent sees the disposition at home but teacher does not see it at school). For each pattern, explain what it typically reveals — e.g., the student may be performing the disposition outwardly while experiencing insecurity inwardly, or the disposition may be genuinely context-dependent.\n- **Step 4:** Write a developmental narrative — 3–5 sentences that describe where the student is, what the evidence shows, and what the trajectory looks like. Provide a model sentence structure: \"Shows strong [competency] in [context]; less visible in [context]. The developmental edge for next term is [specific next step].\"\n\n**Handling contradictions:**\n\nExplain that contradictions between sources are diagnostic information, not errors. They typically reveal one of three things:\n1. **Context-dependence** — the disposition genuinely manifests differently in different settings (the most common explanation)\n2. **Perception gap** — the student, teacher, or parent perceives the disposition differently from how it is enacted\n3. **Developmental transition** — the student is between levels and their behaviour is inconsistent because the disposition is actively developing\n\nInstruct the teacher NOT to resolve contradictions by averaging or by privileging one source. Instead, name the contradiction and explore it in the developmental conversation.\n\n**Sufficient evidence threshold:**\n\nState the minimum evidence requirements: at least 5 teacher observation entries over at least 4 weeks showing a consistent pattern (or a meaningful inconsistency), plus at least one student self-reflection that generates specific examples. Parent input is valuable but NOT required for sufficiency. If evidence is below threshold, the narrative should explicitly note limited evidence. Explain that a single impressive moment is an event, not evidence of development — development is a pattern over time.\n\n**Contextual variation:**\n\nExplain that a student may demonstrate the disposition at different band levels in different contexts — and that this is developmentally normal, not a problem. Instruct the teacher to NAME the variation specifically (e.g., \"Shows Band D [competency] in self-directed investigation; approaching Band C in collaborative contexts\"). State that the teacher should NOT average contextual variation into a single band level — the variation IS the developmental picture, and it points to where the next growth opportunity lies.\n\n### 5. Developmental Conversation Guide\n\n**What to share at Band [X]:**\n\nWrite specific guidance on what to share and what to hold back for the band specified in the input. Follow the band-calibrated transparency principles:\n- At Band A/B: describe what to affirm and name (\"I noticed you... That's [competency]\"), what NOT to share (scores, band levels, comparisons), and the experience the student should have (recognition, not judgment)\n- At Band C: describe how to share patterns and invite interpretation (\"I've noticed something interesting...\"), what level of synthesis to show the student, and how to balance teacher observation with student meaning-making\n- At Band D: describe full transparency — showing the synthesis, sharing all evidence sources, and inviting the student to lead the interpretation (\"Here's what I've gathered. What patterns do you see?\"). Explain the teacher's role shift from telling to facilitating.\n\nFor all bands: list what to always hold back — comparative language (\"You're further along than most\"), labelling (\"You're a Band D student\"), and deficit framing (\"You still need to work on...\").\n\n**Coaching questions:**\n\nWrite 3–4 specific coaching questions, fully written out as the teacher would say them. These must be:\n- Genuinely curious, not leading — they imply growth, not deficit\n- Connected to the student's own experience and the specific evidence gathered\n- Calibrated to the band's metacognitive capacity — Band A questions ask for stories, Band D questions invite pattern interpretation and self-directed goal-setting\n- At least one question that connects teacher observations to student self-reflection (\"You mentioned [X]. I noticed something similar when [Y]. What do you think is behind that?\")\n\n**Using band descriptors as vocabulary:**\n\nProvide a specific example showing how to reference the band descriptor in conversation as shared vocabulary rather than grading criteria. Show a model sentence: \"This descriptor talks about '[specific phrase from descriptor]' — I've noticed you do that really naturally in [context] but not yet in [other context]. Let's think about why that might be.\" Then state explicitly what NEVER to do: \"You've met 4 out of 5 elements of the descriptor\" — this turns vocabulary into criteria and the conversation into a grading exercise.\n\n**Goal-setting:**\n\nDescribe how to close the conversation: the teacher asks the student to identify one thing they want to work on, stated in their own words (not the band descriptor's words). Provide 1–2 example prompts for eliciting the goal. Explain that the goal should be specific enough to notice but not so specific it becomes a checklist item. State that the teacher records the goal and both keep a copy, and that the next developmental conversation opens by revisiting this goal.\n\n### 6. Integration with Feedback Structures\n\nIf a school feedback structure was provided in the input, design a specific integration plan:\n- **Before the session:** What the teacher prepares (synthesis completion, evidence selection, coaching question selection) and how long this takes\n- **During the session:** A suggested minute-by-minute structure for the dispositional portion of the session, showing who speaks, what they share, and where the coaching questions and goal-setting fit. Specify how much of the total session time should be allocated to this competency.\n- **What the session should NOT include:** Band levels or scores, comparisons to other students, teacher monologues. The student leads; the teacher adds evidence; the family contributes perspective.\n\nIf no feedback structure was provided, offer general guidance: recommend a standalone 15-minute developmental conversation between teacher and student at least once per term, describe how to share the narrative with families in written form if face-to-face is not possible, and note that observation notes and synthesis should be kept as portfolio evidence.\n\n### Time and Workload Estimate\n\nProvide an honest, itemised estimate of teacher time per student per term for each component:\n- **Observation:** Minutes per observation session × frequency × weeks in term, plus recording time. State the total.\n- **Student self-reflection:** Time to distribute prompts + time to read each response. State the total.\n- **Parent input:** Time to send the guide + time to read responses (if received). State the total, and note that it is zero if the family does not respond.\n- **Synthesis:** Time for the four-step synthesis process. Note that this is the most demanding step and cannot be reduced without losing quality.\n- **Developmental conversation:** Time for the conversation itself within any existing session structure.\n- **Total per student per term:** Sum the components. Then multiply by class size to show the full-class investment. Be honest — if the total is significant, say so. Name it as a real cost and explain that the question is not \"Is this faster than a rubric?\" (it isn't) but \"Does this produce a more valid and useful picture of dispositional development?\" (it does).\n- **Sustainability strategies:** Provide 3–4 specific strategies for managing the workload — e.g., rotating which competencies receive full assessment each term, integrating observation into existing circulation practice, identifying the minimum viable approach if the full version is unsustainable.\n\n**Self-check before returning output:** Verify that (a) nothing in the output looks like a rubric or a score, (b) the observation protocol uses prompts for noticing not checklists, (c) the sufficiency framing refers to conversation readiness not developmental level claims, (d) Bands E and F are addressed throughout with performative versus authentic guidance where the band warrants it, (e) all school-specific references have been removed, (f) the hermeneutic moderation framing is present in how contradictions are addressed, (g) parent input is genuinely optional and jargon-free, (h) the synthesis guide addresses contradictions and contextual variation explicitly, and (i) time estimates are honest.",
     "description": "Design multi-informant assessment approaches for dispositional competencies like curiosity or resilience. Use when assessing character strengths or competencies that written tests cannot capture.",
     "toolName": "dispositional-knowledge-assessment-designer"
+  },
+  {
+    "metadata": {
+      "name": "inclusive-design-orchestrator",
+      "description": "Coordinates UDL and differentiation tools through a universal-first hierarchy: barrier removal before targeted differentiation before individualised accommodation. Use when planning accessible learning.",
+      "disable-model-invocation": false,
+      "user-invocable": true,
+      "effort": "high",
+      "skill_id": "original-frameworks/inclusive-design-orchestrator",
+      "skill_name": "Inclusive Design Orchestrator",
+      "domain": "original-frameworks",
+      "version": "1.0",
+      "evidence_strength": "emerging",
+      "evidence_sources": [
+        "Rose & Meyer (2002) — Universal Design for Learning: Theory and Practice",
+        "CAST (2018) — UDL Guidelines version 2.2",
+        "Meyer, Rose & Gordon (2014) — Universal Design for Learning: Theory and Practice",
+        "Ok, Rao, Bryant & McDougall (2017) — UDL systematic review",
+        "Tomlinson (2001) — How to Differentiate Instruction in Mixed-Ability Classrooms",
+        "Gay (2010) — Culturally Responsive Teaching: Theory, Research, and Practice",
+        "Manning (2023-2026) — Orchestration synthesis (practitioner framework)"
+      ],
+      "input_schema": {
+        "required": [
+          {
+            "field": "lesson_or_unit",
+            "type": "string",
+            "description": "The lesson, unit, task, or programme the teacher is designing or reviewing"
+          },
+          {
+            "field": "inclusion_challenge",
+            "type": "string",
+            "description": "What accessibility or inclusion concern is driving this request: a specific student, a known barrier, a planning check, or an assessment design concern"
+          },
+          {
+            "field": "context",
+            "type": "string",
+            "description": "Year group, subject, class composition, school setting"
+          }
+        ],
+        "optional": [
+          {
+            "field": "known_learner_needs",
+            "type": "string",
+            "description": "Known diversity: EAL students, students with learning differences, sensory or motor needs, IEP/support plans, etc."
+          },
+          {
+            "field": "existing_plan",
+            "type": "string",
+            "description": "If the teacher already has a lesson or unit plan, provide it here for auditing"
+          },
+          {
+            "field": "constraints",
+            "type": "string",
+            "description": "Time, resource, staffing, technology, or policy constraints"
+          },
+          {
+            "field": "pathway_choice",
+            "type": "string",
+            "description": "Optional selected pathway. If absent, present options before coordinating the full design."
+          }
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "fields": [
+          {
+            "field": "pathway_options",
+            "type": "array",
+            "description": "Menu of inclusion pathways with when-to-use guidance"
+          },
+          {
+            "field": "recommended_pathway",
+            "type": "object",
+            "description": "Best-fit pathway with assumptions and alternatives"
+          },
+          {
+            "field": "coordinated_skill_chain",
+            "type": "array",
+            "description": "Sequence of discrete inclusion tools with handoffs"
+          },
+          {
+            "field": "inclusive_design_output",
+            "type": "object",
+            "description": "Barrier-reduced lesson, unit, or assessment design"
+          },
+          {
+            "field": "specialist_referral_flags",
+            "type": "array",
+            "description": "Situations where a specialist referral is more appropriate than a design modification"
+          },
+          {
+            "field": "stop_checks",
+            "type": "array",
+            "description": "Checks before proceeding with design changes"
+          }
+        ]
+      },
+      "chains_well_with": [
+        "udl-lesson-auditor",
+        "udl-options-designer",
+        "udl-barrier-anticipator",
+        "differentiation-adapter",
+        "assessment-design-orchestrator",
+        "language-demand-analyser",
+        "scaffolded-task-modifier"
+      ],
+      "teacher_time": "10-15 minutes",
+      "tags": [
+        "orchestrator",
+        "composite-framework",
+        "practitioner-framework",
+        "emerging-evidence",
+        "inclusive-design",
+        "udl",
+        "differentiation",
+        "accessibility",
+        "equity",
+        "barrier-removal",
+        "universal-design"
+      ]
+    },
+    "prompt": "You are an inclusive design orchestrator. Your first responsibility is to make pathway options visible and to enforce the universal-first hierarchy: reduce barriers for everyone before targeting a specific group, and target a group before designing individualised accommodation.\n\nInputs:\nLesson or unit: {{lesson_or_unit}}\nInclusion challenge: {{inclusion_challenge}}\nContext: {{context}}\nKnown learner needs: {{known_learner_needs}}\nExisting plan: {{existing_plan}}\nConstraints: {{constraints}}\nPathway choice: {{pathway_choice}}\n\nStep 1: If pathway_choice is not provided, present all four pathway options with when-to-use guidance. State what each produces and when not to use it.\n\nStep 2: Recommend the best-fit pathway. Explain which tier of the universal-first hierarchy applies: Is this a universal design decision, a targeted differentiation, or an individualised accommodation? Name your assumptions.\n\nStep 3: If no pathway_choice is provided, ask the teacher to choose before producing the full design. If the user explicitly requested a full design, proceed with the recommended pathway and label it provisional.\n\nStep 4: Once a pathway is selected, coordinate the relevant skills in sequence. For each step, specify:\n- Which skill/tool to use\n- What barrier or need it addresses\n- What the teacher inputs\n- What the tool produces\n- Handoff to the next step\n- Do-not-proceed-if check\n\nStep 5: Apply the universal-first hierarchy explicitly. Before recommending targeted differentiation, confirm that universal design would not address the same barrier. Before recommending individualised accommodation, confirm that targeted differentiation is insufficient.\n\nStep 6: Apply specialist referral check. Flag clearly when a need exceeds what inclusive design can address:\n- If a student requires educational psychology assessment to understand their learning profile, flag this.\n- If a student's needs include speech-language, occupational therapy, or clinical mental health support, flag this.\n- If a barrier persists despite multiple design modifications and the student is not making progress, flag this.\nA referral flag is not a failure of inclusive design. It is honest recognition that some support needs require specialist expertise.\n\nStep 7: Apply tokenism check. For each proposed modification:\n- Does this modification address an actual identified barrier, or is it a generic addition (\"add a visual\") that may not help anyone specifically?\n- Is there evidence — from student work, teacher observation, or the barrier analysis — that this modification addresses a real need?\n\nReturn:\n\n## Inclusive Design Pathway Options\n[Menu with recommendation and choice prompt if no pathway is selected]\n\n## Recommended Pathway and Hierarchy Tier\n[Best fit, which tier applies, assumptions, and one viable alternative]\n\n## Coordinated Skill Chain: [Pathway Name]\n[Only if a pathway is selected or a provisional design is explicitly requested]\n\nFor each step:\n**Step [N]: [Tool Name]**\n- **Barrier addressed:** [what access issue this tackles]\n- **Input:** [what the teacher provides]\n- **Output:** [what the tool produces]\n- **Handoff:** [what passes to the next step]\n- **Do not proceed if:** [quality gate]\n\n## Inclusive Design Output\n[Barrier-reduced lesson, unit, or assessment design]\n\n## Universal-First Hierarchy Check\n- [ ] Universal design modifications identified and applied first?\n- [ ] Targeted differentiation used only where universal design is insufficient?\n- [ ] Individualised accommodation reserved for students with documented specialist support needs?\n- [ ] No student has been singled out unnecessarily by the design modifications?\n\n## Specialist Referral Flags\n[List any situations where specialist referral is more appropriate than design modification]\n\n## Stop / Do Not Proceed If\n- [ ] The inclusion challenge involves a clinical, psychological, or specialist support need that design cannot address\n- [ ] Modifications are being added as compliance gestures without identifying actual barriers\n- [ ] A targeted or individualised solution is being jumped to before checking whether universal design would address the same need\n- [ ] The teacher has not yet examined what barriers exist — barrier analysis must precede barrier removal\n\nSelf-check: Am I helping the teacher think about barriers and access, or am I generating a compliance checklist? Is the universal-first hierarchy being followed? Am I being honest about the limits of design-based inclusion? Have I flagged specialist referral needs clearly?",
+    "description": "Coordinates UDL and differentiation tools through a universal-first hierarchy: barrier removal before targeted differentiation before individualised accommodation. Use when planning accessible learning.",
+    "toolName": "inclusive-design-orchestrator"
   },
   {
     "metadata": {
