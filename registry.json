@@ -1,8 +1,8 @@
 {
   "version": "2.0",
-  "generated": "2026-05-18T15:17:00.938331+00:00",
+  "generated": "2026-05-19T15:15:25.732087+00:00",
   "standard": "agent-skills-1.0",
-  "total_skills": 147,
+  "total_skills": 152,
   "domains": [
     {
       "id": "ai-learning-science",
@@ -72,7 +72,7 @@
     {
       "id": "original-frameworks",
       "label": "Original Frameworks",
-      "skill_count": 13
+      "skill_count": 17
     },
     {
       "id": "professional-learning",
@@ -92,7 +92,7 @@
     {
       "id": "systems-thinking",
       "label": "Systems Thinking",
-      "skill_count": 7
+      "skill_count": 8
     },
     {
       "id": "wellbeing-motivation-agency",
@@ -3382,6 +3382,40 @@
       "path": "skills/original-frameworks/developmental-progression-synthesis/SKILL.md"
     },
     {
+      "id": "original-frameworks/dilemma-navigation-for-education-design",
+      "name": "dilemma-navigation-for-education-design",
+      "display_name": "Dilemma Navigation for Education Design",
+      "domain": "original-frameworks",
+      "description": "Identify and navigate genuine dilemmas in curriculum, school, or community contexts \u2014 tensions between competing goods that cannot be solved, only navigated. Produces a structured dilemma map with both poles named and both/and possibilities.",
+      "disable_model_invocation": false,
+      "evidence_strength": "emerging",
+      "tags": [
+        "h3uni",
+        "dilemma-navigation",
+        "values",
+        "both-and-thinking",
+        "original-framework",
+        "emerging-evidence",
+        "curriculum-design",
+        "ethics"
+      ],
+      "teacher_time": "15 minutes",
+      "chains_with": [
+        "three-horizons-learning-transition-mapper",
+        "multi-perspective-decision-wheel",
+        "systems-awareness-iceberg",
+        "assessment-validity-checker",
+        "hexagon-complexity-mapper"
+      ],
+      "chain_edges": {
+        "receives_from": [],
+        "feeds_into": [],
+        "output_field": null,
+        "input_field": null
+      },
+      "path": "skills/original-frameworks/dilemma-navigation-for-education-design/SKILL.md"
+    },
+    {
       "id": "original-frameworks/dispositional-knowledge-assessment-designer",
       "name": "dispositional-knowledge-assessment-designer",
       "display_name": "Dispositional Knowledge Assessment Designer",
@@ -3497,6 +3531,42 @@
       "path": "skills/original-frameworks/learning-target-authoring-guide/SKILL.md"
     },
     {
+      "id": "original-frameworks/multi-perspective-decision-wheel",
+      "name": "multi-perspective-decision-wheel",
+      "display_name": "Multi-Perspective Decision Wheel",
+      "domain": "original-frameworks",
+      "description": "Structure a decision or design challenge through multiple perspectives before committing to action. Use as a synthesis step after scoping, mapping, and dilemma navigation when a group needs a wiser next step.",
+      "disable_model_invocation": false,
+      "evidence_strength": "emerging",
+      "tags": [
+        "h3uni",
+        "decision-making",
+        "multiple-perspectives",
+        "wheel-of-wisdom",
+        "original-framework",
+        "emerging-evidence",
+        "programme-planning",
+        "boundary-critique"
+      ],
+      "teacher_time": "10 minutes",
+      "chains_with": [
+        "dilemma-navigation-for-education-design",
+        "three-horizons-learning-transition-mapper",
+        "agency-circles-for-systems-action",
+        "project-brief-designer",
+        "regenerative-project-design-orchestrator",
+        "assessment-validity-checker",
+        "seeds-regenerative-inquiry-cycle"
+      ],
+      "chain_edges": {
+        "receives_from": [],
+        "feeds_into": [],
+        "output_field": null,
+        "input_field": null
+      },
+      "path": "skills/original-frameworks/multi-perspective-decision-wheel/SKILL.md"
+    },
+    {
       "id": "original-frameworks/place-based-curriculum-orchestrator",
       "name": "place-based-curriculum-orchestrator",
       "display_name": "Place-Based Curriculum Orchestrator",
@@ -3577,6 +3647,40 @@
         "input_field": null
       },
       "path": "skills/original-frameworks/regenerative-project-design-orchestrator/SKILL.md"
+    },
+    {
+      "id": "original-frameworks/scoping-for-transformative-learning-inquiry",
+      "name": "scoping-for-transformative-learning-inquiry",
+      "display_name": "Scoping for Transformative Learning Inquiry",
+      "domain": "original-frameworks",
+      "description": "Define the scope and purpose of a complex inquiry before mapping or futures work begins. Use when a class or group needs to agree what they are investigating, who it matters to, and at what scale.",
+      "disable_model_invocation": false,
+      "evidence_strength": "emerging",
+      "tags": [
+        "h3uni",
+        "scoping",
+        "inquiry-design",
+        "systems-thinking",
+        "original-framework",
+        "emerging-evidence",
+        "programme-planning"
+      ],
+      "teacher_time": "5 minutes",
+      "chains_with": [
+        "hexagon-complexity-mapper",
+        "three-horizons-learning-transition-mapper",
+        "place-based-inquiry-anchor",
+        "project-brief-designer",
+        "seeds-regenerative-inquiry-cycle",
+        "regenerative-project-design-orchestrator"
+      ],
+      "chain_edges": {
+        "receives_from": [],
+        "feeds_into": [],
+        "output_field": null,
+        "input_field": null
+      },
+      "path": "skills/original-frameworks/scoping-for-transformative-learning-inquiry/SKILL.md"
     },
     {
       "id": "original-frameworks/seeds-regenerative-inquiry-cycle",
@@ -3683,6 +3787,44 @@
         "input_field": null
       },
       "path": "skills/original-frameworks/single-point-rubric-designer/SKILL.md"
+    },
+    {
+      "id": "original-frameworks/three-horizons-learning-transition-mapper",
+      "name": "three-horizons-learning-transition-mapper",
+      "display_name": "Three Horizons Learning Transition Mapper",
+      "domain": "original-frameworks",
+      "description": "Map a scoped topic across three coexisting horizons \u2014 current system under strain (H1), preferred future (H3), and transition innovations sorted as H2+ or H2- \u2014 to understand change dynamics and identify responsible next actions.",
+      "disable_model_invocation": false,
+      "evidence_strength": "emerging",
+      "tags": [
+        "h3uni",
+        "three-horizons",
+        "futures-thinking",
+        "transition",
+        "h2-plus",
+        "h2-minus",
+        "original-framework",
+        "emerging-evidence",
+        "systems-change",
+        "programme-planning"
+      ],
+      "teacher_time": "20 minutes",
+      "chains_with": [
+        "scoping-for-transformative-learning-inquiry",
+        "hexagon-complexity-mapper",
+        "dilemma-navigation-for-education-design",
+        "systems-awareness-iceberg",
+        "agency-circles-for-systems-action",
+        "place-based-inquiry-anchor",
+        "regenerative-project-design-orchestrator"
+      ],
+      "chain_edges": {
+        "receives_from": [],
+        "feeds_into": [],
+        "output_field": null,
+        "input_field": null
+      },
+      "path": "skills/original-frameworks/three-horizons-learning-transition-mapper/SKILL.md"
     },
     {
       "id": "professional-learning/competency-framework-translator",
@@ -4382,6 +4524,41 @@
         "input_field": null
       },
       "path": "skills/systems-thinking/aspirational-systems-iceberg/SKILL.md"
+    },
+    {
+      "id": "systems-thinking/hexagon-complexity-mapper",
+      "name": "hexagon-complexity-mapper",
+      "display_name": "Hexagon Complexity Mapper",
+      "domain": "systems-thinking",
+      "description": "Map a complex topic by placing factors on hexagonal tiles where adjacency signals a claimed relationship. Use when students need to surface hidden connections in a system before analysis or action.",
+      "disable_model_invocation": false,
+      "evidence_strength": "emerging",
+      "tags": [
+        "systems-thinking",
+        "hexagon-mapping",
+        "complexity",
+        "relationships",
+        "h3uni",
+        "visual-facilitation",
+        "emerging-evidence",
+        "student-inquiry"
+      ],
+      "teacher_time": "15 minutes",
+      "chains_with": [
+        "systems-awareness-iceberg",
+        "mental-model-mapper",
+        "three-horizons-learning-transition-mapper",
+        "leverage-and-response-design",
+        "agency-circles-for-systems-action",
+        "place-based-inquiry-anchor"
+      ],
+      "chain_edges": {
+        "receives_from": [],
+        "feeds_into": [],
+        "output_field": null,
+        "input_field": null
+      },
+      "path": "skills/systems-thinking/hexagon-complexity-mapper/SKILL.md"
     },
     {
       "id": "systems-thinking/ladder-of-inference-reflection",

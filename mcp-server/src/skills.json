@@ -10883,6 +10883,127 @@
   },
   {
     "metadata": {
+      "name": "dilemma-navigation-for-education-design",
+      "description": "Identify and navigate genuine dilemmas in curriculum, school, or community contexts — tensions between competing goods that cannot be solved, only navigated. Produces a structured dilemma map with both poles named and both/and possibilities.",
+      "disable-model-invocation": false,
+      "user-invocable": true,
+      "effort": "medium",
+      "skill_id": "original-frameworks/dilemma-navigation-for-education-design",
+      "skill_name": "Dilemma Navigation for Education Design",
+      "domain": "original-frameworks",
+      "version": "1.0",
+      "evidence_strength": "emerging",
+      "evidence_sources": [
+        "H3Uni Dilemma Thinking tutorial and Dilemma Resolution mapping guide (CC BY-SA 4.0, practitioner method)",
+        "Johnson, B. (1992). Polarity Management: Identifying and Managing Unsolvable Problems. HRD Press.",
+        "Hampden-Turner, C. (1990). Charting the Corporate Mind: From Dilemma to Strategy. Basil Blackwell."
+      ],
+      "input_schema": {
+        "required": [
+          {
+            "field": "tension_or_dilemma",
+            "type": "string",
+            "description": "Description of the tension — what two values, needs, or approaches seem to be in conflict"
+          },
+          {
+            "field": "context",
+            "type": "string",
+            "description": "The curriculum, school, or community context in which this tension appears"
+          }
+        ],
+        "optional": [
+          {
+            "field": "value_a",
+            "type": "string",
+            "description": "Name for the first pole — the value or principle on one side"
+          },
+          {
+            "field": "value_b",
+            "type": "string",
+            "description": "Name for the second pole — the value or principle on the other side"
+          },
+          {
+            "field": "student_level",
+            "type": "string",
+            "description": "Year group or age range"
+          },
+          {
+            "field": "related_systems_work",
+            "type": "string",
+            "description": "Insights from prior Three Horizons mapping or hexagon mapping that surfaced this dilemma"
+          }
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "fields": [
+          {
+            "field": "dilemma_statement",
+            "type": "string",
+            "description": "A clear statement of the dilemma with both poles named as legitimate values"
+          },
+          {
+            "field": "value_a_pole",
+            "type": "object",
+            "description": "Value A: what it offers, what it risks when over-emphasised, what it needs from Value B, what it can offer Value B"
+          },
+          {
+            "field": "value_b_pole",
+            "type": "object",
+            "description": "Value B: what it offers, what it risks when over-emphasised, what it needs from Value A, what it can offer Value A"
+          },
+          {
+            "field": "compromise_zone",
+            "type": "string",
+            "description": "The tempting middle-ground that appears to resolve the tension but fails both values"
+          },
+          {
+            "field": "conflict_zone",
+            "type": "string",
+            "description": "Where the genuine pain, trade-off, or incompatibility is felt most sharply"
+          },
+          {
+            "field": "both_and_possibilities",
+            "type": "array",
+            "description": "Ideas that honour both values simultaneously rather than trading one for the other"
+          },
+          {
+            "field": "implementation_constraints",
+            "type": "array",
+            "description": "Real constraints on any integration idea — resource, authority, time, cultural, or structural"
+          },
+          {
+            "field": "quality_gate_results",
+            "type": "object",
+            "description": "Results of structural quality checks on the dilemma map"
+          }
+        ]
+      },
+      "chains_well_with": [
+        "three-horizons-learning-transition-mapper",
+        "multi-perspective-decision-wheel",
+        "systems-awareness-iceberg",
+        "assessment-validity-checker",
+        "hexagon-complexity-mapper"
+      ],
+      "teacher_time": "15 minutes",
+      "tags": [
+        "h3uni",
+        "dilemma-navigation",
+        "values",
+        "both-and-thinking",
+        "original-framework",
+        "emerging-evidence",
+        "curriculum-design",
+        "ethics"
+      ]
+    },
+    "prompt": "You are facilitating a dilemma navigation exercise. Students are working with a genuine tension — a situation where two values both matter and choosing one at the expense of the other causes a different harm. The goal is not to pick a winner but to find both/and possibilities that honour each side.\n\nCRITICAL DISTINCTION: A dilemma is not a problem. Problems have solutions that eliminate the tension. Dilemmas are genuine tensions where both sides contain legitimate value. If one side is obviously wrong, it is not a dilemma — it is a problem to solve. Check that both poles have real value before proceeding.\n\nInputs:\nTension or dilemma: {{tension_or_dilemma}}\nContext: {{context}}\nValue A: {{value_a}}\nValue B: {{value_b}}\nStudent level: {{student_level}}\nRelated systems work: {{related_systems_work}}\n\nStep 1 — Confirm this is a dilemma:\nCheck: Does each side contain real value that would be lost if it disappeared entirely? If yes, proceed. If one side is obviously wrong, name this and help the teacher reframe as a problem to solve rather than a dilemma to navigate.\n\nStep 2 — Name both poles generously:\nName Value A and Value B. Each pole must be stated in its most generous form — what does this value genuinely protect, enable, or make possible? Name it as a legitimate good, not as an obstacle to the other side.\n\nStep 3 — Map the compromise zone:\nWhat is the tempting middle-ground response that appears to resolve the tension but actually fails both values? Name this trap specifically.\n\nStep 4 — Map the conflict zone:\nWhere is the genuine pain, incompatibility, or trade-off most sharply felt in this specific context?\n\nStep 5 — Offers and requests:\nFor each pole:\n- What can Value A offer to Value B? (what does A contribute that B needs?)\n- What does Value A need from Value B to function well without causing harm?\n[Repeat for Value B]\n\nStep 6 — Both/and integration possibilities:\nGenerate 2–3 ideas that honour both values simultaneously. These should:\n- Go beyond compromise (not just \"a bit of both\")\n- Name how each idea preserves the core of each value\n- Acknowledge constraints and difficulties of implementation\n\nStep 7 — Name implementation constraints:\nFor each both/and idea, name real constraints: resource, authority, time, cultural, structural, or relational factors that make implementation difficult.\n\nStep 8 — Quality check:\nApply these gates:\n- REJECT if one pole is obviously wrong (this is a problem — help the teacher reframe)\n- FLAG if neither pole has named values — just positions or preferences\n- FLAG if the output declares a winner (\"Value A is more important\") rather than seeking integration\n- FLAG if both/and ideas are just compromises (50/50 splits) rather than genuine integration\n- NOTE: Different students can legitimately hold different positions. Forced consensus is not the goal.\n\nReturn exactly:\n\n## Dilemma Map: [Topic/Context]\n\n**Dilemma statement:**\n[Clear statement naming both poles as genuine values. Format: \"Between [Value A] — [what it protects] — and [Value B] — [what it protects] — lies a genuine tension in which honouring one fully can compromise the other.\"]\n\n---\n\n### Value A — [Name]\n\n**What Value A offers:** [what it protects, enables, or makes possible]\n**What happens when Value A is over-emphasised:** [what is lost or harmed]\n**What Value A needs from Value B:** [to function well without causing harm]\n**What Value A can offer Value B:** [what it contributes that B needs]\n\n---\n\n### Value B — [Name]\n\n**What Value B offers:** [what it protects, enables, or makes possible]\n**What happens when Value B is over-emphasised:** [what is lost or harmed]\n**What Value B needs from Value A:** [to function well without causing harm]\n**What Value B can offer Value A:** [what it contributes that A needs]\n\n---\n\n### Compromise Zone (trap to avoid)\n[The tempting middle-ground that fails both values in this context]\n\n### Conflict Zone (where the pain is felt)\n[Where the genuine incompatibility is felt most sharply]\n\n---\n\n### Both/And Integration Possibilities\n\n**Option 1:** [Idea]\n- Preserves Value A by: [how]\n- Preserves Value B by: [how]\n- Constraints: [what makes this difficult]\n\n**Option 2:** [Idea]\n- Preserves Value A by: [how]\n- Preserves Value B by: [how]\n- Constraints: [what makes this difficult]\n\n---\n\n### Quality Gate Results\n- [ ] Both poles contain real value: [pass/fail — if fail, suggest reframing as problem]\n- [ ] Both poles stated generously: [pass/flag]\n- [ ] No winner declared: [pass/flag]\n- [ ] Both/and ideas go beyond compromise: [pass/flag]\n- [ ] Implementation constraints named: [pass/flag]\n\n**Note on consensus:** Different students can legitimately hold different positions on this dilemma. The goal is shared understanding of why the tension is genuine, not forced agreement.\n\n### Next Step Options\n[multi-perspective-decision-wheel if the dilemma needs broader perspective before deciding; agency-circles-for-systems-action if students want to act within their sphere of control; assessment-validity-checker if this is a curriculum design dilemma]",
+    "description": "Identify and navigate genuine dilemmas in curriculum, school, or community contexts — tensions between competing goods that cannot be solved, only navigated. Produces a structured dilemma map with both poles named and both/and possibilities.",
+    "toolName": "dilemma-navigation-for-education-design"
+  },
+  {
+    "metadata": {
       "name": "dispositional-knowledge-assessment-designer",
       "description": "Design multi-informant assessment approaches for dispositional competencies like curiosity or resilience. Use when assessing character strengths or competencies that written tests cannot capture.",
       "disable-model-invocation": true,
@@ -11273,6 +11394,124 @@
   },
   {
     "metadata": {
+      "name": "multi-perspective-decision-wheel",
+      "description": "Structure a decision or design challenge through multiple perspectives before committing to action. Use as a synthesis step after scoping, mapping, and dilemma navigation when a group needs a wiser next step.",
+      "disable-model-invocation": false,
+      "user-invocable": true,
+      "effort": "medium",
+      "skill_id": "original-frameworks/multi-perspective-decision-wheel",
+      "skill_name": "Multi-Perspective Decision Wheel",
+      "domain": "original-frameworks",
+      "version": "1.0",
+      "evidence_strength": "emerging",
+      "evidence_sources": [
+        "H3Uni Wheel of Wisdom tutorial and facilitation guides (CC BY-SA 4.0, practitioner method)",
+        "Midgley, G. (2000). Systemic Intervention: Philosophy, Methodology, and Practice. Kluwer Academic/Plenum.",
+        "Rajagopalan, R., & Midgley, G. (2015). Knowing differently in systemic intervention. Systems Research and Behavioral Science, 32, 546–561."
+      ],
+      "input_schema": {
+        "required": [
+          {
+            "field": "decision_or_challenge",
+            "type": "string",
+            "description": "The specific decision, proposal, or design challenge to examine — must be a question of judgement, not a factual question"
+          },
+          {
+            "field": "context",
+            "type": "string",
+            "description": "The school, curriculum, or community context in which the decision sits"
+          }
+        ],
+        "optional": [
+          {
+            "field": "prior_inquiry_summary",
+            "type": "string",
+            "description": "Insights from prior scoping, hexagon mapping, Three Horizons mapping, or dilemma navigation that inform this decision"
+          },
+          {
+            "field": "perspectives_to_include",
+            "type": "array",
+            "description": "Specific stakeholders, disciplines, time horizons, or value lenses to include as spokes on the wheel"
+          },
+          {
+            "field": "student_level",
+            "type": "string",
+            "description": "Year group or age range"
+          },
+          {
+            "field": "decision_constraints",
+            "type": "string",
+            "description": "Real constraints the decision must operate within — resources, authority, time, policy, or community factors"
+          }
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "fields": [
+          {
+            "field": "central_question",
+            "type": "string",
+            "description": "The decision question placed at the centre of the wheel"
+          },
+          {
+            "field": "perspectives",
+            "type": "array",
+            "description": "Each perspective as a spoke: name, what it sees, what it misses, what it asks, what it contributes"
+          },
+          {
+            "field": "tensions_between_perspectives",
+            "type": "array",
+            "description": "At least one genuine tension where two perspectives see the situation differently"
+          },
+          {
+            "field": "synthesis_insights",
+            "type": "array",
+            "description": "What the whole wheel reveals that no single perspective could see alone"
+          },
+          {
+            "field": "proposal_improvements",
+            "type": "object",
+            "description": "What the proposal or decision should keep, change, test, and stop"
+          },
+          {
+            "field": "next_responsible_step",
+            "type": "object",
+            "description": "One specific, feasible next action with responsibility, evidence needed, and limits"
+          },
+          {
+            "field": "quality_gate_results",
+            "type": "object",
+            "description": "Results of structural quality checks on the decision wheel"
+          }
+        ]
+      },
+      "chains_well_with": [
+        "dilemma-navigation-for-education-design",
+        "three-horizons-learning-transition-mapper",
+        "agency-circles-for-systems-action",
+        "project-brief-designer",
+        "regenerative-project-design-orchestrator",
+        "assessment-validity-checker",
+        "seeds-regenerative-inquiry-cycle"
+      ],
+      "teacher_time": "10 minutes",
+      "tags": [
+        "h3uni",
+        "decision-making",
+        "multiple-perspectives",
+        "wheel-of-wisdom",
+        "original-framework",
+        "emerging-evidence",
+        "programme-planning",
+        "boundary-critique"
+      ]
+    },
+    "prompt": "You are facilitating a multi-perspective decision wheel. Students will examine a specific decision or design challenge through multiple perspectives, identify tensions between them, and synthesise the insights into a wiser next step.\n\nCRITICAL SEQUENCE: This skill works best after students have completed prior inquiry — scoping, hexagon mapping, Three Horizons, dilemma navigation. Without prior inquiry the wheel produces surface opinions. With prior inquiry it synthesises understanding into a considered recommendation.\n\nCRITICAL PRINCIPLE: Each perspective is a lens, not a performance or stereotype. The goal is disciplined perspective-taking — genuinely trying to see what that perspective sees — not role-play theatre.\n\nInputs:\nDecision or challenge: {{decision_or_challenge}}\nContext: {{context}}\nPrior inquiry summary: {{prior_inquiry_summary}}\nPerspectives to include: {{perspectives_to_include}}\nStudent level: {{student_level}}\nDecision constraints: {{decision_constraints}}\n\nStep 1 — Frame the central question:\nPlace the decision or design challenge at the centre. The question must be a genuine question of judgement (what should we do, prioritise, change, protect, or try?). If the input is a proposal, reframe: \"Should we [proposal]? What would make it wiser?\"\n\nStep 2 — Select perspectives:\nIf perspectives are provided, use them. If not, generate 4–6 perspectives appropriate to the context. Good perspective sets include:\n- At least one perspective of someone not present in the room (future students, community members, non-humans, those most affected)\n- At least one time perspective (what does the long-term view see that the immediate view misses?)\n- At least one values perspective (what does an equity, fairness, or sustainability lens see?)\n- At least one practical or implementation perspective (what does the person who has to do this every day see?)\n\nAvoid stereotyped role-play roles. Prefer descriptive perspectives (\"the long-term view,\" \"students most affected,\" \"the ecological perspective\") over theatrical ones.\n\nStep 3 — Apply each perspective:\nFor each perspective, generate:\n- **Sees:** What does this perspective see that others might miss?\n- **Misses:** What does this perspective tend to underweight or overlook?\n- **Asks:** What question does this perspective put to the decision that must be answered?\n- **Contributes:** What does honouring this perspective add to the decision?\n\nStep 4 — Name tensions between perspectives:\nIdentify at least one genuine tension — where two perspectives see the situation differently, value different things, or recommend incompatible directions. Name the tension without resolving it. A wheel where all perspectives agree is not probing the decision deeply enough.\n\nStep 5 — Synthesise wheel insights:\nBased on the full wheel, identify what the combined perspectives reveal that no single perspective could see alone. This is the synthesis insight — the understanding that makes multi-perspective work valuable.\n\nStep 6 — Improve the proposal:\nBased on the wheel, state what the proposal or decision should:\n- **Keep:** what is already wise and should be preserved\n- **Change:** what would be improved by incorporating a perspective's insight\n- **Test:** what is uncertain and needs a small experiment before full commitment\n- **Stop:** what the wheel suggests dropping\n\nStep 7 — Next responsible step:\nProduce one specific, feasible next action:\n- What the action is\n- Who is responsible for it\n- What evidence or permission is needed before the action is taken\n- The limit — what this action should NOT do without further consultation\n\nStep 8 — Quality check:\nApply these gates:\n- FLAG if fewer than 4 perspectives are included (decision not examined broadly enough)\n- FLAG if all perspectives agree (wheel is confirming a decision already made, not examining it)\n- REQUIRE at least one tension between perspectives to be named\n- REJECT outputs that go directly to \"what we should do\" without naming what each perspective contributes and misses\n- FLAG if no perspective represents those most affected who are not present in the room\n\nReturn exactly:\n\n## Decision Wheel: [Decision/Challenge]\n\n**Central question:** [question at the centre of the wheel]\n**Context:** [brief context]\n**Prior inquiry drawn on:** [summary of insights informing this wheel]\n\n---\n\n### Perspectives\n\n**Perspective 1 — [Name]**\n- Sees: [what this perspective reveals]\n- Misses: [what it tends to underweight]\n- Asks: [the question it puts to the decision]\n- Contributes: [what honouring this perspective adds]\n\n[Repeat for each perspective — 4–6 total]\n\n---\n\n### Tensions Between Perspectives\n\n- **[Perspective A] vs. [Perspective B]:** [What they see differently and why it matters for the decision]\n\n---\n\n### Synthesis Insights\n\n[What the whole wheel reveals that no single perspective could see alone — 2–3 key insights]\n\n---\n\n### Proposal Improvements\n\n**Keep:** [what is already wise]\n**Change:** [what the wheel suggests improving]\n**Test:** [what needs a small experiment before full commitment]\n**Stop:** [what the wheel suggests dropping]\n\n---\n\n### Next Responsible Step\n\n**Action:** [specific and feasible]\n**Responsible:** [who will do this]\n**Evidence or permission needed:** [what is required before acting]\n**Limit:** [what this action should not do without further consultation]\n\n---\n\n### Quality Gate Results\n- [ ] 4+ perspectives included: [pass/flag — state number used]\n- [ ] Not all perspectives agree: [pass/flag]\n- [ ] At least one tension named: [pass/flag]\n- [ ] Perspectives examined before conclusions reached: [pass/flag]\n- [ ] At least one perspective represents those most affected but not present: [pass/flag]",
+    "description": "Structure a decision or design challenge through multiple perspectives before committing to action. Use as a synthesis step after scoping, mapping, and dilemma navigation when a group needs a wiser next step.",
+    "toolName": "multi-perspective-decision-wheel"
+  },
+  {
+    "metadata": {
       "name": "place-based-curriculum-orchestrator",
       "description": "Present pathway options and orchestrate place-based curriculum design from a local place, curriculum requirement, or community issue. Use when place should become a primary text for learning.",
       "disable-model-invocation": false,
@@ -11515,6 +11754,132 @@
     "prompt": "You are a regenerative project design orchestrator. Your job is to help the educator choose a project design pathway before building the full project.\n\nInputs:\nProject intent: {{project_intent}}\nLearner stage: {{learner_stage}}\nCurriculum goals: {{curriculum_goals}}\nSystem/context: {{system_or_context}}\nTime available: {{time_available}}\nCommunity/adult partners: {{community_or_adult_partners}}\nConstraints: {{constraints}}\nPathway choice: {{pathway_choice}}\n\nStep 1: Present the five pathway options:\n- Backwards Design Project\n- Project-Based Learning / Inquiry Project\n- SEEDS Regenerative Inquiry\n- Compassionate Systems Action Project\n- Civic / Service Learning Project\n\nFor each option, explain what it is for, what it produces, when to choose it, and when not to choose it.\n\nStep 2: Recommend the best-fit pathway. Explain why and name the assumptions behind the recommendation. Include at least one viable alternative if there is one.\n\nStep 3: If no pathway_choice was provided, ask the educator to choose before producing the full project design. If a full design is explicitly requested, proceed with the recommended pathway and label it provisional.\n\nStep 4: Once a pathway is selected, create an orchestrated skill chain. For every skill, name:\n- purpose\n- input needed\n- output produced\n- handoff to next skill\n- do-not-proceed-if check\n\nStep 5: Produce the project design with regenerative quality gates. The project should avoid heroic student-fixer narratives and should distinguish student agency from adult/institutional responsibility.\n\nReturn:\n\n## Regenerative Project Pathway Options\n[Menu with recommendation and choice prompt if needed]\n\n## Recommended Pathway\n[Best fit, assumptions, alternatives]\n\n## Orchestrated Skill Chain\n[Step-by-step skill sequence and handoffs]\n\n## Regenerative Project Design\n[Only if pathway selected or provisional design requested]\n\n## Regenerative Quality Gates\n- [ ] Does the project increase capacity for the system to thrive, rather than only reduce harm or produce a display?\n- [ ] Are students learning before acting?\n- [ ] Is action bounded by real control, influence, or supported collective influence?\n- [ ] Are adult/community responsibilities named?\n- [ ] Are unintended consequences anticipated?\n- [ ] Is there a stewardship, handoff, maintenance, or continuation plan where needed?\n- [ ] Does assessment measure the intended learning, not just the attractiveness of the final product?",
     "description": "Present project-design pathway options and orchestrate regenerative projects using backwards design, PBL, SEEDS, compassionate systems action, or civic/service pathways.",
     "toolName": "regenerative-project-design-orchestrator"
+  },
+  {
+    "metadata": {
+      "name": "scoping-for-transformative-learning-inquiry",
+      "description": "Define the scope and purpose of a complex inquiry before mapping or futures work begins. Use when a class or group needs to agree what they are investigating, who it matters to, and at what scale.",
+      "disable-model-invocation": false,
+      "user-invocable": true,
+      "effort": "low",
+      "skill_id": "original-frameworks/scoping-for-transformative-learning-inquiry",
+      "skill_name": "Scoping for Transformative Learning Inquiry",
+      "domain": "original-frameworks",
+      "version": "1.0",
+      "evidence_strength": "emerging",
+      "evidence_sources": [
+        "H3Uni Scoping tutorial and facilitation guide (CC BY-SA 4.0, practitioner method)",
+        "Fazey, I. et al. (2018). Ten essentials for action-oriented and second order energy transitions, transformations and climate change research. Energy Research & Social Science, 40, 54–70.",
+        "Rajagopalan, R., & Midgley, G. (2015). Knowing differently in systemic intervention. Systems Research and Behavioral Science, 32, 546–561."
+      ],
+      "input_schema": {
+        "required": [
+          {
+            "field": "topic_or_concern",
+            "type": "string",
+            "description": "The broad issue, opportunity, or challenge the group wants to explore — can be vague at this stage"
+          },
+          {
+            "field": "context",
+            "type": "string",
+            "description": "The school, community, place, or institutional setting of the inquiry"
+          }
+        ],
+        "optional": [
+          {
+            "field": "student_level",
+            "type": "string",
+            "description": "Year group or age range"
+          },
+          {
+            "field": "focal_actor_or_system",
+            "type": "string",
+            "description": "A specific person, group, organisation, ecosystem, or institution that the inquiry centres on"
+          },
+          {
+            "field": "purpose",
+            "type": "string",
+            "description": "What the inquiry is for — understanding, planning, advocacy, design, or stewardship"
+          },
+          {
+            "field": "time_available",
+            "type": "string",
+            "description": "Whether this is a single lesson, a unit, a term, or a longer programme"
+          }
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "fields": [
+          {
+            "field": "scoping_statement",
+            "type": "string",
+            "description": "A 2–3 sentence statement naming the inquiry arena, focal actor, and purpose"
+          },
+          {
+            "field": "focal_actor_or_system",
+            "type": "string",
+            "description": "The specific person, group, place, or system at the centre of the inquiry"
+          },
+          {
+            "field": "transactional_environment",
+            "type": "array",
+            "description": "People, groups, and forces in direct interaction with the focal actor"
+          },
+          {
+            "field": "contextual_environment",
+            "type": "array",
+            "description": "Wider forces, histories, policies, and conditions that shape the situation indirectly"
+          },
+          {
+            "field": "time_horizon",
+            "type": "string",
+            "description": "The time scale the inquiry will consider"
+          },
+          {
+            "field": "evidence_available",
+            "type": "array",
+            "description": "Evidence or information the group already has"
+          },
+          {
+            "field": "evidence_needed",
+            "type": "array",
+            "description": "Key questions or information gaps the inquiry needs to address"
+          },
+          {
+            "field": "boundary_decisions",
+            "type": "array",
+            "description": "What is deliberately left outside the inquiry and why"
+          },
+          {
+            "field": "quality_gate_results",
+            "type": "object",
+            "description": "Results of structural quality checks on the scoping statement"
+          }
+        ]
+      },
+      "chains_well_with": [
+        "hexagon-complexity-mapper",
+        "three-horizons-learning-transition-mapper",
+        "place-based-inquiry-anchor",
+        "project-brief-designer",
+        "seeds-regenerative-inquiry-cycle",
+        "regenerative-project-design-orchestrator"
+      ],
+      "teacher_time": "5 minutes",
+      "tags": [
+        "h3uni",
+        "scoping",
+        "inquiry-design",
+        "systems-thinking",
+        "original-framework",
+        "emerging-evidence",
+        "programme-planning"
+      ]
+    },
+    "prompt": "You are facilitating a scoping exercise at the start of a transformative learning inquiry. The goal is to help a teacher or class agree on what they are investigating, why it matters, at what scale, and for what purpose — before any mapping or analysis begins.\n\nInputs:\nTopic or concern: {{topic_or_concern}}\nContext: {{context}}\nStudent level: {{student_level}}\nFocal actor or system: {{focal_actor_or_system}}\nPurpose: {{purpose}}\nTime available: {{time_available}}\n\nStep 1 — Identify the focal actor or system:\nBased on the topic and context, identify or confirm the focal actor: the specific person, group, institution, place, or ecosystem that the inquiry centres on. If the input is vague (e.g., \"climate\"), propose 2–3 possible focal actors at different scales and ask the teacher to choose. Example options for \"climate\": the school's energy use; a specific local ecosystem accessible to students; the local authority's land use decisions.\n\nStep 2 — Map the transactional environment:\nIdentify the people, groups, artefacts, and systems that directly interact with the focal actor or issue. These are parties within reach — they can be influenced, or they exert direct influence on the focal actor.\n\nStep 3 — Map the contextual environment:\nIdentify wider forces, histories, policies, values, ecological conditions, technologies, or trends that shape the situation from outside the focal actor's direct reach. These are background conditions the inquiry must be aware of but may not be able to change.\n\nStep 4 — Draft the scoping statement:\nWrite a scoping statement in this format:\n\"We are exploring [what] from the perspective of [who] so that we can [purpose].\"\n\nThe statement must:\n- Name a specific arena (not \"the world\" or \"society\")\n- Name who the inquiry is for or centred on\n- State a purpose (understanding, designing, proposing, stewarding)\n- Be expressible in 2–3 sentences\n\nStep 5 — State the time horizon:\nName the relevant time scale: recent past (observable patterns), present (current conditions), near future (1–3 years), or long horizon (10+ years). The time horizon should match the purpose.\n\nStep 6 — Name evidence and boundary decisions:\nList evidence already available (what students know or can easily find out) and key evidence gaps. Then name what is deliberately left outside the inquiry and why — boundary decisions are explicit, not accidental.\n\nStep 7 — Quality check:\nApply the following gates:\n- REJECT if the scoping statement does not name a specific system, community, place, or institution (too vague to investigate)\n- FLAG if no time horizon is named\n- FLAG if the scope is \"save the world\" scale — suggest a nested, more local entry point instead\n- FLAG if the statement cannot be expressed in 2–3 sentences (too complex for a single inquiry)\n- REJECT if no focal actor is nameable (scoping is not complete until the group can name who or what the inquiry centres on)\n\nReturn exactly:\n\n## Inquiry Scope: [Topic]\n\n**Focal actor or system:** [specific name]\n\n**Scoping statement:**\n[2–3 sentence statement: \"We are exploring [what] from the perspective of [who] so that we can [purpose].\"]\n\n**Transactional environment** (direct influences):\n- [person/group/system — how they interact with the focal actor]\n\n**Contextual environment** (wider forces):\n- [wider force/history/policy/condition — how it shapes the situation indirectly]\n\n**Time horizon:** [named time scale with brief explanation]\n\n**Evidence available:**\n- [what students already know or can access]\n\n**Evidence needed:**\n- [key questions or information gaps]\n\n**Boundary decisions:**\n- [what is deliberately outside this inquiry and why]\n\n### Quality Gate Results\n- [ ] Names a specific system, community, or place: [pass/flag]\n- [ ] Time horizon stated: [pass/flag]\n- [ ] Not \"save the world\" scale: [pass/flag]\n- [ ] Expressible in 2–3 sentences: [pass/flag]\n- [ ] Focal actor is nameable: [pass/flag]\n\n### Suggested Next Skills\n[hexagon-complexity-mapper if the group needs to map the situation's factors; three-horizons-learning-transition-mapper if a value dimension is clear; place-based-inquiry-anchor if the inquiry has a strong place or ecological dimension; seeds-regenerative-inquiry-cycle if stewardship and continuation are central]",
+    "description": "Define the scope and purpose of a complex inquiry before mapping or futures work begins. Use when a class or group needs to agree what they are investigating, who it matters to, and at what scale.",
+    "toolName": "scoping-for-transformative-learning-inquiry"
   },
   {
     "metadata": {
@@ -11880,6 +12245,127 @@
     "prompt": "You are designing a single-point rubric using the principles established by Fluckiger (2010) and Sadler (1989). Follow these rules PRECISELY — they are the quality standard for every rubric produced.\n\nCRITICAL DESIGN PRINCIPLE:\nCriterion precision determines evidence quality. A vague criterion produces vague column entries and the rubric fails. Write the criterion first — what does meeting this learning target actually look like as a specific, observable quality? Every other decision follows from that.\n\n---\n\nSTEP 1 — FORMAT DECISION:\n\nApply this logic in order:\n- If student_generated is \"yes\": skip to the STUDENT-GENERATED MODE section below. Do not produce a criterion.\n- If format is explicitly provided as \"two-column\": use two-column format.\n- If format is explicitly provided as \"three-column\": use three-column format.\n- If band is A or B: use two-column format.\n- If student_level suggests ages 5–9 (e.g. \"Year 1\", \"age 6\", \"Kindergarten\"): use two-column format.\n- Default: use three-column format. Calibrate language to student_level if provided; otherwise write for a general secondary audience.\n\n---\n\nSTEP 2 — CRITERION WRITING RULES (non-negotiable):\n\nThe criterion is a single precise statement of what quality looks like. Apply every rule:\n\n1. **One integrated quality, not a checklist.** Do not list components. \"A claim that is supported by evidence and addresses a counterargument\" is one integrated quality. \"Has a claim, has evidence, has a counterargument\" is a checklist — it fails.\n2. **Descriptive language, not evaluative language.** Describe what the work or behaviour looks like. Never use: good, excellent, thorough, adequate, appropriate, strong, clear (without specifying what clarity means). Instead: specify the observable feature.\n3. **Specific enough to generate concrete evidence.** A student reading this criterion must be able to point to a specific moment, sentence, example, or action that belongs in each column. If they could only write \"I did well\" or \"I need to improve,\" the criterion is too vague.\n4. **Calibrated to the audience.** Neither too simple (patronising) nor too demanding (inaccessible). If band is provided, calibrate to band expectations. If student_level is provided, calibrate language to that level.\n5. **Scoped to the learning target.** Does not add requirements the learning target does not contain. Does not drop requirements it does contain.\n6. **Single sentence where possible.** Never more than two sentences.\n\nWrite the criterion BEFORE constructing the rubric table. State it explicitly and apply the quality check:\n- Is it one integrated quality, not a list?\n- Is the language descriptive not evaluative?\n- Would a student know exactly what kind of evidence to write in each column?\n- Is it calibrated to the audience?\n- Does it match what the learning target requires, no more and no less?\n\nIf it fails any check, rewrite before continuing.\n\n---\n\nSTEP 3 — RUBRIC OUTPUT:\n\n**Three-column format:**\n\nPresent the rubric as a markdown table. The criterion goes in the centre column header. The outer columns contain the guidance text as a standing instruction for whoever completes the rubric — these are NOT filled in by you.\n\n| Areas for growth | [Criterion statement] | Areas of strength |\n|---|---|---|\n| Record specific evidence here — moments, examples, or observations that show progress toward the criterion but do not yet fully meet it | [Criterion statement repeated] | Record specific evidence here — moments, examples, or observations that demonstrate or go beyond the criterion |\n\nDo not fill in the evidence columns. They are left blank for the user to complete.\n\n**Two-column format:**\n\n| [Criterion statement] | My reflection |\n|---|---|\n| [Criterion statement repeated] | Describe a specific moment or example that shows where you are with this right now. |\n\n---\n\nSTUDENT-GENERATED MODE:\n\nWhen student_generated is \"yes\", do not produce a criterion statement. Instead produce:\n\n**Framing sentence for the student:**\n\"Think about what doing this really well looks like for you personally. Write one sentence that describes it.\"\n\n**Scaffolding prompts (provide 2–3):**\n- \"What would someone watching you be able to see or hear?\"\n- \"What is the difference between doing this well and doing it adequately — what's the specific thing that changes?\"\n- \"If you were helping a friend get better at this, what would you tell them to focus on?\"\n\n**Note to teacher:**\nThe student-generated criterion is personal and specific to this student. Do not correct, standardise, or replace it with your own language. The value is in the student's own articulation of quality — even if it is imperfect. With younger learners (Band A–B or ages 5–9), co-generate the criterion through conversation rather than expecting independent writing.\n\n---\n\nSTEP 4 — USAGE GUIDANCE:\n\nIdentify which of the following purposes applies, apply the closest match if exact match is not found, and note the adaptation.\n\n- **Student self-assessment before submission:** Student completes both outer columns independently using their own work as evidence. They then decide whether to revise based on what they wrote. The teacher does not complete the rubric — the student's evidence is the formative data.\n- **Peer feedback:** The peer completes the columns based on their reading of the work. The owner reads the completed rubric and decides what to act on. The peer does not give a grade or level — only evidence.\n- **Teacher formative feedback:** Teacher completes the columns with specific observations from the work. Shares with student as the basis for a feedback conversation, not as a verdict or grade. The evidence in the columns IS the feedback.\n- **Pre-task planning:** Student completes only the \"areas of strength\" column as a planning tool — what specific evidence do I want to be able to put here by the end? The left column remains blank until after the task.\n- **Personal reflection:** Student completes the rubric in relation to their own experience, behaviour, or growth over time — not a specific product. Evidence is drawn from memory, observation, or journal entries.\n\n---\n\nSTEP 5 — CRITERION DESIGN NOTES:\n\nExplain:\n- Why the criterion was written this way\n- What it deliberately includes and what it deliberately excludes\n- What made it difficult to write precisely, if anything\n\n---\n\nSTEP 6 — KNOWN LIMITATIONS:\n\nApply these standing limitations, plus any specific to the learning target provided:\n\n1. The criterion statement requires judgment to write well — too broad produces vague evidence, too narrow becomes a checklist. If the output criterion feels like either of these, flag it to the user.\n2. Single-point rubrics work best when students have already been introduced to the learning target and have some experience with the domain — they are formative tools, not introductory ones.\n3. The student-generated version is only as useful as the quality of the student's self-knowledge. With younger learners the teacher may need to co-generate the criterion through conversation.\n4. This skill does not produce grades or summative levels. If a summative judgment is needed, use coherent-rubric-logic-builder or criterion-referenced-rubric-generator instead.\n\n---\n\nYour task is to design a single-point rubric for:\n\n**Learning target:** {{learning_target}}\n**Purpose:** {{purpose}}\n\nThe following optional context may or may not be provided. Use whatever is available; ignore any fields marked \"not provided.\"\n\n**Band:** {{band}} — if not provided, use three-column format unless student_level indicates ages 5–9.\n**Format:** {{format}} — if provided, overrides band-based default.\n**Student generated:** {{student_generated}} — if \"yes\", produce the student-generated prompt instead of a criterion.\n**Task description:** {{task_description}} — if provided, use to calibrate criterion precision.\n**Student level:** {{student_level}} — if provided, use to calibrate language.\n\nReturn your output in this exact format:\n\n## Single-Point Rubric: [Learning Target Summary]\n\n**Learning target:** [The exact learning target as provided]\n**Purpose:** [The stated purpose]\n**Format selected:** [Three-column / Two-column / Student-generated] — [brief reason]\n\n### Criterion\n\n[State the criterion here before the table. One sentence, two maximum.]\n\n**Quality check:**\n- One integrated quality, not a list: [Yes / No — if No, explain and rewrite]\n- Descriptive not evaluative: [Yes / No — if No, explain and rewrite]\n- Generates concrete evidence: [Yes / No — if No, explain and rewrite]\n- Calibrated to audience: [Yes / brief note]\n- Scoped to learning target: [Yes / brief note]\n\n### Rubric\n\n[Insert the appropriate format table here]\n\n### Criterion Design Notes\n\n[Why this criterion; what it includes and excludes; what was difficult to make precise]\n\n### Usage Guidance\n\n[How to use this rubric for the specified purpose — what the student, peer, or teacher does with the completed columns]\n\n### Known Limitations\n\n[Standing limitations plus any specific to this learning target]",
     "description": "Design a single-point rubric with one criterion and open columns for evidence. Use for student self-assessment, peer feedback, teacher formative feedback, or pre-task planning. Works with any learning target, with or without a band system.",
     "toolName": "single-point-rubric-designer"
+  },
+  {
+    "metadata": {
+      "name": "three-horizons-learning-transition-mapper",
+      "description": "Map a scoped topic across three coexisting horizons — current system under strain (H1), preferred future (H3), and transition innovations sorted as H2+ or H2- — to understand change dynamics and identify responsible next actions.",
+      "disable-model-invocation": false,
+      "user-invocable": true,
+      "effort": "high",
+      "skill_id": "original-frameworks/three-horizons-learning-transition-mapper",
+      "skill_name": "Three Horizons Learning Transition Mapper",
+      "domain": "original-frameworks",
+      "version": "1.0",
+      "evidence_strength": "emerging",
+      "evidence_sources": [
+        "Curry, A., & Hodgson, A. (2008). Seeing in multiple horizons: connecting futures to strategy. Journal of Futures Studies, 13(1), 1–20.",
+        "Sharpe, B., Fazey, I., Hodgson, A., Leicester, G., & Lyon, A. (2016). Three horizons: A pathways practice for transformation. Ecology and Society, 21(2), 47.",
+        "Sharpe, B., & Hodgson, A. (2019). Anticipation in three horizons. In R. Poli (Ed.), Handbook of Anticipation. Springer.",
+        "H3Uni Three Horizons tutorials and facilitation guides (CC BY-SA 4.0, practitioner method)"
+      ],
+      "input_schema": {
+        "required": [
+          {
+            "field": "scoped_topic",
+            "type": "string",
+            "description": "The inquiry topic, ideally from a completed scoping statement — specific enough to generate concrete evidence for each horizon"
+          },
+          {
+            "field": "value_dimension",
+            "type": "string",
+            "description": "The value or quality the group cares about — what goes on the vertical axis. Examples: ecological health, student wellbeing, learning depth, belonging, fairness, community resilience"
+          }
+        ],
+        "optional": [
+          {
+            "field": "student_level",
+            "type": "string",
+            "description": "Year group or age range"
+          },
+          {
+            "field": "existing_evidence",
+            "type": "string",
+            "description": "Data, observations, or student work already available about the current situation"
+          },
+          {
+            "field": "h3_seeds",
+            "type": "string",
+            "description": "Pockets of the preferred future already visible somewhere — real examples, prototypes, or inspiring cases"
+          },
+          {
+            "field": "prior_hexagon_map",
+            "type": "string",
+            "description": "Key clusters or insights from a prior hexagon mapping exercise, if available"
+          }
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "fields": [
+          {
+            "field": "h1_map",
+            "type": "object",
+            "description": "Current system under strain: evidence of dysfunction, persistence factors, what H1 still provides"
+          },
+          {
+            "field": "h3_map",
+            "type": "object",
+            "description": "Preferred future pattern: values, norms, relationships; pockets already visible"
+          },
+          {
+            "field": "h2_map",
+            "type": "object",
+            "description": "Transition activity sorted as H2+ (grows toward H3) and H2- (extends H1 in new language)"
+          },
+          {
+            "field": "transition_story",
+            "type": "string",
+            "description": "3–5 sentence narrative of what is declining, emerging, contested, and where action might help"
+          },
+          {
+            "field": "h2_plus_opportunities",
+            "type": "array",
+            "description": "Specific H2+ innovations worth supporting or learning from"
+          },
+          {
+            "field": "quality_gate_results",
+            "type": "object",
+            "description": "Results of structural quality checks on the three horizons map"
+          },
+          {
+            "field": "next_step_options",
+            "type": "array",
+            "description": "Suggested follow-on skills based on map insights"
+          }
+        ]
+      },
+      "chains_well_with": [
+        "scoping-for-transformative-learning-inquiry",
+        "hexagon-complexity-mapper",
+        "dilemma-navigation-for-education-design",
+        "systems-awareness-iceberg",
+        "agency-circles-for-systems-action",
+        "place-based-inquiry-anchor",
+        "regenerative-project-design-orchestrator"
+      ],
+      "teacher_time": "20 minutes",
+      "tags": [
+        "h3uni",
+        "three-horizons",
+        "futures-thinking",
+        "transition",
+        "h2-plus",
+        "h2-minus",
+        "original-framework",
+        "emerging-evidence",
+        "systems-change",
+        "programme-planning"
+      ]
+    },
+    "prompt": "You are facilitating a Three Horizons mapping exercise. Students will map a complex topic across three coexisting patterns: the current dominant system under strain (H1), the preferred future pattern they want to grow (H3), and transition innovations (H2) sorted as H2+ (grows toward H3) or H2- (extends H1 in new language).\n\nCRITICAL SEQUENCE: Always map in this order: H1 → H3 → H2. Never H1 → H2 → H3. Without mapping H3 first, it is impossible to distinguish H2+ from H2-. H2 innovations can only be classified once students know what future they are testing them against.\n\nCRITICAL FRAMING: H1 is not \"bad\" and H3 is not \"good.\" H1 elements persist in any real system and supply functions that must not be lost. H3 pockets already exist in the present. Frame the map as change dynamics, not moral categories.\n\nInputs:\nScoped topic: {{scoped_topic}}\nValue dimension: {{value_dimension}}\nStudent level: {{student_level}}\nExisting evidence: {{existing_evidence}}\nH3 seeds: {{h3_seeds}}\nPrior hexagon map: {{prior_hexagon_map}}\n\nStep 1 — Map Horizon 1 (current pattern under strain):\nH1 is the dominant current pattern: the dominant assumptions, practices, structures, metrics, and relationships that currently govern the topic. The vertical axis measures the value dimension. H1 is declining not because it is evil but because it is losing fit with changing conditions or values.\n\nAsk: What evidence shows the current pattern is under strain? What keeps H1 in place even as it loses fit? Who benefits from H1 continuing? What does H1 still provide that we need?\n\nGenerate:\n- Evidence of H1 strain: specific, observable examples showing the value dimension is being compromised\n- H1 persistence factors: the structures, incentives, habits, or beliefs that sustain H1 even under pressure\n- What H1 still provides: valuable functions any transition must preserve\n\nStep 2 — Map Horizon 3 (preferred future pattern):\nH3 is the pattern of life the group wants to grow: the values, norms, relationships, and practices that would represent genuine improvement in the value dimension. H3 is not a fantasy — it must be grounded in pockets already visible somewhere.\n\nAsk: What would this system look like if the value dimension were genuinely flourishing? Where can we already see pockets of this future — in other schools, communities, projects, or places? What values and norms characterise H3?\n\nGenerate:\n- H3 pattern description: what the preferred future looks, feels, and works like\n- H3 pockets: real examples already existing somewhere that embody elements of H3\n- H3 values: the shared values or principles this future is built on\n\nStep 3 — Map Horizon 2 (transition innovations, sorted as H2+ or H2-):\nH2 innovations are the experiments, projects, practices, and actors responding to pressure between H1 and H3. Some grow the preferred future (H2+). Others extend the old pattern in new language — they look like change but reinforce H1's core logic (H2-).\n\nFor each H2 item, test: Does this innovation genuinely move toward H3, or does it adapt H1 to survive? H2- items often use H3 language (sustainability, wellbeing, innovation) while leaving H1 structures intact.\n\nFor each H2 item generate:\n- Description of the innovation or experiment\n- Classification: H2+ or H2-\n- Reasoning: why it grows H3 or why it extends H1\n\nStep 4 — Tell the transition story:\nWrite a narrative (3–5 sentences) describing: what is declining in H1, what is emerging in H3, which H2 innovations are genuinely transitional, what is contested, and where the group might focus action.\n\nStep 5 — Quality check:\nApply these gates:\n- FLAG if H3 is empty or contains only vague aspirations with no grounded pockets (cannot distinguish H2+ from H2- without a concrete H3)\n- FLAG if no H2 items are classified as H2+ or H2- (H2 listed without analysis)\n- FLAG if H1 contains only complaints or blame without structural analysis (H1 needs evidence of strain AND persistence factors)\n- REJECT if the output frames H1 as \"bad\" and H3 as \"good\" without nuance\n- FLAG if H3 has no real-world pockets — aspiration only with no connection to present reality\n\nReturn exactly:\n\n## Three Horizons Map: [Topic] — [Value Dimension]\n\n**Scoped topic:** [topic]\n**Value dimension:** [what the group cares about protecting or growing]\n\n---\n\n### Horizon 1 — Current Pattern Under Strain\n\n**What H1 looks like:**\n[Description of the dominant current pattern]\n\n**Evidence of strain:**\n- [Specific, observable example]\n\n**What keeps H1 in place:**\n- [Persistence factor — structure, incentive, habit, or belief]\n\n**What H1 still provides:**\n- [Function or value that any transition must preserve]\n\n---\n\n### Horizon 3 — Preferred Future Pattern\n\n**What H3 looks like:**\n[Description of the preferred future — grounded, not utopian]\n\n**Pockets of H3 already visible:**\n- [Real example — a school, community, project, or practice already embodying elements of H3]\n\n**H3 values:**\n- [Shared values or norms characterising this future]\n\n---\n\n### Horizon 2 — Transition Activity\n\n| Innovation or Experiment | H2+ or H2-? | Reasoning |\n|---|---|---|\n| [name] | H2+ | [grows toward H3 because...] |\n| [name] | H2- | [extends H1 in new language because...] |\n\n**H2+ opportunities worth supporting:**\n- [Key H2+ innovations with brief explanation]\n\n---\n\n### Transition Story\n[3–5 sentence narrative: what is declining, what is emerging, what is contested, where action might help]\n\n---\n\n### Quality Gate Results\n- [ ] H3 is grounded with at least one concrete pocket: [pass/flag]\n- [ ] H2 items are classified as H2+ or H2-: [pass/flag]\n- [ ] H1 includes structural analysis, not only complaints: [pass/flag]\n- [ ] Map avoids moral framing of H1 as bad, H3 as good: [pass/flag]\n- [ ] H3 is a pattern of life, not a list of innovations: [pass/flag]\n\n### Next Step Options\n[dilemma-navigation-for-education-design if the map surfaces a genuine tension between values; agency-circles-for-systems-action if students are ready to act; regenerative-project-design-orchestrator if a project design is needed]",
+    "description": "Map a scoped topic across three coexisting horizons — current system under strain (H1), preferred future (H3), and transition innovations sorted as H2+ or H2- — to understand change dynamics and identify responsible next actions.",
+    "toolName": "three-horizons-learning-transition-mapper"
   },
   {
     "metadata": {
@@ -14198,6 +14684,129 @@
     "prompt": "You are facilitating an Aspirational Systems Iceberg. Start with the desired visible event and work downward to the deeper system that would make it more likely.\n\nInputs:\nDesired event: {{desired_event}}\nContext: {{context}}\nStudent level: {{student_level}}\nCurrent reality: {{current_reality}}\nStakeholders: {{stakeholders}}\nConstraints: {{constraints}}\n\nRules:\n1. Make the desired event observable. If the aspiration is vague, translate it into visible evidence: what would someone see, hear, read, or experience?\n2. Work downward from aspiration to conditions:\n   - Event: What are we trying to grow? What visible evidence would show it is happening?\n   - Patterns and behaviours: What repeated actions, habits, interactions, and trends would need to become normal?\n   - Structures and artefacts: What routines, roles, spaces, tools, protocols, schedules, policies, resources, rituals, feedback loops, or artefacts would sustain those patterns?\n   - Mental models: What beliefs, values, assumptions, identities, and definitions of success would need to be strengthened, questioned, or shifted?\n3. Include current reality without letting it dominate. The purpose is design, not complaint.\n4. Avoid magical thinking. Every aspiration must be connected to concrete structures and small experiments.\n5. Preserve agency and responsibility. Do not imply students alone must fix institutional or systemic problems.\n6. End with first safe experiments that the class or teacher can try within their real sphere of influence.\n\nReturn exactly:\n\n## Aspirational Systems Iceberg: [Desired Event]\n\n**Context:** [brief]\n**Design stance:** We are identifying the conditions that could help this aspiration grow.\n\n### 1. Desired Event\n**What we want to see happen:** [observable event]\n**How we would recognise it:**\n- [Visible/heard evidence]\n- [Student/community experience evidence]\n- [Artefact/product/data evidence]\n\n### 2. Patterns and Behaviours to Grow\n- [Repeated behaviour/habit/interaction]\n- [Trend over time]\n- [Pattern of response when difficulty appears]\n\n### 3. Structures and Artefacts to Create or Strengthen\n- **Routines:** [repeatable practices]\n- **Roles:** [who holds what responsibility]\n- **Spaces/materials:** [physical/digital/environmental supports]\n- **Protocols/tools:** [scripts, forms, prompts, checklists, dialogue moves]\n- **Time and rhythms:** [when this happens]\n- **Feedback loops:** [how the system notices whether it is growing]\n- **Institutional supports:** [adult, policy, resource, community supports]\n\n### 4. Mental Models to Cultivate or Shift\nFor each mental model:\n- **Current model that may limit growth:** [belief/story]\n- **Aspirational model to cultivate:** [belief/story]\n- **What would make the new model credible:** [experience/evidence/practice]\n\n### 5. First Safe Experiments\nSuggest 3 small experiments:\n1. **Experiment:** [small action]\n   - **Why this tests the system:** [pattern/structure/mental model]\n   - **Evidence to notice:** [what to watch]\n   - **Risk/safety check:** [how to keep it low-harm]\n\n### 6. Classroom Facilitation Sequence\n- **Opening prompt:** [student-friendly]\n- **Individual think time:** [what students write/draw]\n- **Group mapping:** [how groups build the iceberg]\n- **Gallery walk or discussion:** [how patterns across groups are noticed]\n- **Action selection:** [how to choose one experiment]\n- **Reflection:** [what to revisit later]\n\n### Quality Gates\n- [ ] Desired event is observable.\n- [ ] Patterns are repeated behaviours, not one-off hopes.\n- [ ] Structures are concrete enough to design.\n- [ ] Mental models are examined with humility, not used to judge people.\n- [ ] First experiments sit within real control or influence.\n- [ ] Institutional responsibility is named where needed.",
     "description": "Design the deeper patterns, structures, artefacts, and mental models needed to grow a desired event. Use when a class imagines a better future.",
     "toolName": "aspirational-systems-iceberg"
+  },
+  {
+    "metadata": {
+      "name": "hexagon-complexity-mapper",
+      "description": "Map a complex topic by placing factors on hexagonal tiles where adjacency signals a claimed relationship. Use when students need to surface hidden connections in a system before analysis or action.",
+      "disable-model-invocation": false,
+      "user-invocable": true,
+      "effort": "medium",
+      "skill_id": "systems-thinking/hexagon-complexity-mapper",
+      "skill_name": "Hexagon Complexity Mapper",
+      "domain": "systems-thinking",
+      "version": "1.0",
+      "evidence_strength": "emerging",
+      "evidence_sources": [
+        "Hodgson, A. (1992). Hexagons for systems thinking. European Journal of System Dynamics, 59(1), 220–230.",
+        "Meadows, D. (2008). Thinking in Systems. Chelsea Green. (systemic structure, feedback, unintended consequences)",
+        "Senge, P. (1990). The Fifth Discipline. Doubleday. (mental models, systems archetypes, seeing wholes)",
+        "H3Uni Hexagon Mapping tutorial and facilitation guides (CC BY-SA 4.0, practitioner method)"
+      ],
+      "input_schema": {
+        "required": [
+          {
+            "field": "topic_or_challenge",
+            "type": "string",
+            "description": "The complex topic, issue, or challenge students are mapping — specific enough to generate 8–20 distinct factors"
+          },
+          {
+            "field": "context",
+            "type": "string",
+            "description": "School, community, ecological, or curriculum context that grounds the mapping"
+          }
+        ],
+        "optional": [
+          {
+            "field": "student_level",
+            "type": "string",
+            "description": "Year group or age range, to calibrate vocabulary and abstraction"
+          },
+          {
+            "field": "mapping_question",
+            "type": "string",
+            "description": "Specific question to focus the mapping — e.g. 'What factors are shaping this situation?'"
+          },
+          {
+            "field": "prior_scoping_statement",
+            "type": "string",
+            "description": "A scoping statement from scoping-for-transformative-learning-inquiry, if already completed"
+          },
+          {
+            "field": "existing_evidence",
+            "type": "string",
+            "description": "Data, stories, observations, or student work already available about this topic"
+          }
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "fields": [
+          {
+            "field": "mapping_question",
+            "type": "string",
+            "description": "The focused question guiding the hexagon map"
+          },
+          {
+            "field": "factor_list",
+            "type": "array",
+            "description": "All factors surfaced for student hexagon tiles"
+          },
+          {
+            "field": "clusters",
+            "type": "array",
+            "description": "Named clusters with member factors and the story each cluster tells"
+          },
+          {
+            "field": "named_relationships",
+            "type": "array",
+            "description": "At least three specific relationships between hexagons or clusters, with direction and explanation"
+          },
+          {
+            "field": "boundary_hexagons",
+            "type": "array",
+            "description": "Factors at the edge of the map representing external forces or entry points for change"
+          },
+          {
+            "field": "map_insights",
+            "type": "array",
+            "description": "What the completed map reveals that was not obvious before mapping"
+          },
+          {
+            "field": "quality_gate_results",
+            "type": "object",
+            "description": "Results of structural quality checks on the map"
+          },
+          {
+            "field": "next_step_options",
+            "type": "array",
+            "description": "Suggested follow-on skills based on map structure"
+          }
+        ]
+      },
+      "chains_well_with": [
+        "systems-awareness-iceberg",
+        "mental-model-mapper",
+        "three-horizons-learning-transition-mapper",
+        "leverage-and-response-design",
+        "agency-circles-for-systems-action",
+        "place-based-inquiry-anchor"
+      ],
+      "teacher_time": "15 minutes",
+      "tags": [
+        "systems-thinking",
+        "hexagon-mapping",
+        "complexity",
+        "relationships",
+        "h3uni",
+        "visual-facilitation",
+        "emerging-evidence",
+        "student-inquiry"
+      ]
+    },
+    "prompt": "You are facilitating a hexagon complexity mapping exercise. Students will identify factors shaping a complex topic, write each on a hexagonal tile, and arrange tiles so that touching hexagons signal a claimed relationship.\n\nCRITICAL PRINCIPLE: Adjacency is the meaning. When two hexagons touch, students are asserting \"these two factors affect each other.\" This is not a sorting or categorisation exercise. Every placement is a relationship claim that students should be able to explain.\n\nInputs:\nTopic or challenge: {{topic_or_challenge}}\nContext: {{context}}\nStudent level: {{student_level}}\nMapping question: {{mapping_question}}\nPrior scoping statement: {{prior_scoping_statement}}\nExisting evidence: {{existing_evidence}}\n\nStep 1 — Form the mapping question:\nIf a mapping question was provided, use it. If not, generate one that asks what factors are shaping the topic — not what solutions are needed. The question should be broad enough to invite diverse factors and specific enough to be answerable with evidence. Format: \"What factors are shaping [topic] in [context]?\"\n\nStep 2 — Factor generation:\nGenerate 12–18 factors for the topic. Each factor should be:\n- Specific (not vague like \"society\" or \"money\")\n- Expressible in 2–4 words on a hexagon tile\n- A genuine mix of: people and groups; structures and systems; events and patterns; values and beliefs; resources and constraints; environmental and material conditions\nLabel this: \"Suggested starting factors — students should add, remove, and rename these.\"\n\nStep 3 — Clustering guidance:\nProvide step-by-step instructions for the class:\n1. Spread all tiles loosely and read them together before touching them.\n2. Move tiles that clearly belong near each other. Ask: \"What makes these two belong together?\" — students must name the relationship, not just a shared theme.\n3. Build clusters by adding tiles with a relationship to existing cluster members.\n4. Name each cluster with a phrase capturing the story it tells, not a category label. Example: \"trust erodes when accountability is unclear\" not \"accountability.\"\n5. After clustering, add arrows between clusters where one cluster strongly influences another.\n6. Identify boundary hexagons — tiles at the edge representing forces outside the group's direct control.\n\nStep 4 — Relationship naming:\nIdentify at least three specific relationships. Each should state:\n- Factor A\n- Factor B\n- How A affects B, or how they affect each other\n- Whether the relationship is reinforcing (more A → more B) or balancing (A limits B)\n- Evidence level: \"we observed this,\" \"we believe this,\" or \"we're guessing\"\n\nStep 5 — Quality check:\nApply these gates:\n- REJECT if the map has fewer than 6 hexagons (topic too narrow or question too simple)\n- FLAG if all hexagons touch all others (no structure found — ask students to re-examine which connections are strongest and which are absent)\n- FLAG if there are no boundary hexagons (ask what forces from outside the group's control are shaping the situation)\n- FLAG if students cannot name 3 specific relationships (tiles placed by category, not relationship — return to clustering Step 2)\n\nStep 6 — Map insights:\nBased on map structure, identify:\n- Which cluster is most central (connected to the most other clusters)?\n- Which factor appears in multiple clusters (a bridge factor)?\n- Which factors at the boundary are entry points for change or external forces?\n- What does the map reveal that a simple list would have hidden?\n\nReturn exactly:\n\n## Hexagon Map: [Topic]\n\n**Mapping question:** [question]\n**Context:** [brief context]\n\n### Suggested Factors\n[12–18 factors, one per line, with note that students should revise these]\n\n### Clustering Guidance\n[Step-by-step instructions for the class]\n\n### Named Relationships\n| Factor A | Factor B | How they relate | Reinforcing or balancing? | Evidence level |\n|---|---|---|---|---|\n[At least 3 rows]\n\n### Cluster Stories\n[For each cluster: cluster name (story-phrase), member factors, what the cluster reveals]\n\n### Boundary Hexagons\n[Factors at the edge — what they are and what they suggest]\n\n### Map Insights\n[What the completed map structure reveals]\n\n### Quality Gate Results\n- [ ] Map has 6+ hexagons: [pass/flag]\n- [ ] Clusters based on relationships, not just themes: [pass/flag/note for teacher]\n- [ ] Boundary hexagons present: [pass/flag]\n- [ ] At least 3 specific relationships named: [pass/flag]\n- [ ] No cluster contains 8+ tiles without a sub-story: [pass/flag]\n\n### Next Step Options\n[Suggest follow-on skills by name: systems-awareness-iceberg if a power or structural cluster is central; three-horizons-learning-transition-mapper if the map has a time dimension; leverage-and-response-design if students want to identify intervention points]",
+    "description": "Map a complex topic by placing factors on hexagonal tiles where adjacency signals a claimed relationship. Use when students need to surface hidden connections in a system before analysis or action.",
+    "toolName": "hexagon-complexity-mapper"
   },
   {
     "metadata": {

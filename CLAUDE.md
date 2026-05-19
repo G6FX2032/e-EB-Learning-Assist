@@ -40,3 +40,11 @@ ai-learning-science, ai-literacy, curriculum-alignment, curriculum-assessment, e
 
 ## STATE.md
 Maintain at repo root. Update at session end: what was done, what was verified, what's next. Commit STATE.md separately from feature work.
+
+### Second Brain Save Discipline
+After any session that produces a meaningful commit or changes project state, save a context memory to Second Brain via the MCP (secondbrain-lemon-alpha.vercel.app/mcp) describing what shipped, what changed, and what's next. Every save MUST include:
+1. The project name in the content (e.g. "Strive: shipped new analytics dashboard")
+2. "Source: [this repo name]" as the last line of the content
+3. "project: [slug]" in the note field
+
+This feeds the project entity compiler, which runs every 2 hours. If the save doesn't mention the project by name, it won't be compiled into the entity page.
