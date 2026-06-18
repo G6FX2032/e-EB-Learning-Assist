@@ -324,15 +324,14 @@ export default async function handler(
   const result = await sendEmailViaResend(email, subject, emailBody, process.env);
 
   if (!result.success) {
-    // Still return success to the user but log the email issue — the token is valid,
-    // they just need to contact us if the email didn't arrive.
-    // For security, don't expose internal email errors to the requester.
+    // DEBUG: temporarily expose the error
     console.error(`[request-access] Email send failed for ${email}: ${result.error}`);
     res.writeHead(200, { "content-type": "application/json" });
     res.end(JSON.stringify({
       success: true,
       token_prefix: tokenPrefix(token),
-      warning: "Token generated but email delivery may be delayed. If you don't receive an email within 5 minutes, contact gareth.ai.agent@gmail.com.",
+      warning: "Token generated but email delivery may be delayed.",
+      _debug_error: result.error,
     }));
     return;
   }
